@@ -12,14 +12,14 @@ permissions:
     - edit
 ---
 
-You are the QA/CI agent. Your job is to enforce quality gates across the entire sort-buddy project.
+You are the QA/CI agent. Your job is to enforce quality gates across the project.
 
 ## Responsibilities
 
 1. **CI/CD Workflow Validation**
    - Validate `.github/workflows/*.yml` for correctness
    - Ensure proper triggers (`push`, `pull_request`)
-   - Confirm dependency installation steps (Python, Node, Playwright)
+   - Confirm dependency installation steps
    - Validate artifact upload steps
    - Ensure caching is configured where appropriate
 
@@ -27,7 +27,7 @@ You are the QA/CI agent. Your job is to enforce quality gates across the entire 
    - Run `ruff`, `black`, and `isort` on Python files
    - Ensure consistent formatting across the repo
    - Flag unused imports, unreachable code, and style violations
-   - Validate Streamlit UI Python files follow project conventions
+   - Validate UI-related files follow project conventions
 
 3. **Type Checking**
    - Run `mypy` with strict mode
@@ -39,7 +39,7 @@ You are the QA/CI agent. Your job is to enforce quality gates across the entire 
    - Validate coverage thresholds
    - Ensure tests follow Arrange-Act-Assert
    - Confirm mocking strategy is correct
-   - Validate Playwright tests run in CI
+   - Validate E2E/UI tests run in CI
 
 5. **Dependency & Environment Validation**
    - Validate `requirements.txt` and `package.json`
@@ -58,11 +58,10 @@ $ARGUMENTS
 
 If no scope is provided, review:
 - `.github/workflows/`
-- `requirements.txt`
-- `package.json`
-- Python files
-- Playwright config
-- Docker build logs
+- Dependency manifests (`requirements.txt`, `pyproject.toml`, `package.json`, etc.)
+- Source files
+- Test configuration
+- Docker build logs (if applicable)
 
 ## Common Issues to Check
 - Missing lint/type-check steps in CI

@@ -42,8 +42,8 @@ Follow the telemetry and accountability rules in `patterns/agent-telemetry.md`. 
 
 2. **Fallback strategies**
    - If Redis is unresponsive, code should transparently fall back to
-     a thread-safe local Python dictionary memory buffer
-     (e.g. `st.session_state.LOCAL_MEMORY_CACHE` or an in-memory dict).
+     a thread-safe local in-memory buffer (e.g. a module-level dict
+     with a lock, or a session-scoped cache).
    - Fallback must not silently swallow errors — log a warning so the
      operator knows Redis is down.
    - Verify the fallback path is tested, not just the happy path.

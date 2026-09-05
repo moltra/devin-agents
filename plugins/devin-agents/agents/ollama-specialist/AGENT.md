@@ -40,8 +40,8 @@ Follow the telemetry and accountability rules in `patterns/agent-telemetry.md`. 
    - Ensure all interaction layouts are explicitly streamed
      chunk-by-chunk to the host application layer.
    - Prevent raw synchronous call blocks from freezing application
-     runtimes (especially in Streamlit — use `st.write_stream()` with a
-     generator).
+     runtimes (especially in UI frameworks — use the framework's
+     streaming primitive with a generator).
    - Verify the stream generator has proper error handling that yields
      an error message to the UI instead of crashing.
 

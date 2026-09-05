@@ -41,7 +41,7 @@ You are **read-only**. You report issues; you do not modify files. You coordinat
 
 4. **Idiomatic Framework Usage**
    - FastAPI: async endpoints, dependency injection, Pydantic validation, response models, lifespan
-   - Streamlit: `st.session_state` patterns, `st.cache_data`/`st.cache_resource`, no rerun loops, widget keys
+   - UI frameworks (e.g. Streamlit): session state patterns, caching decorators, no rerun loops, widget keys
    - Redis: TTL usage, serialization format consistency, connection pooling, fallback strategies
    - Ollama: streaming patterns, timeout config, structured outputs, model lifecycle
 
@@ -64,7 +64,7 @@ $ARGUMENTS
 
 If no scope is provided, review:
 - Recent changes (`git diff` against the base branch, or `git diff --cached` for staged work)
-- Falls back to `app/`, `webui/`, `config.toml`, `Dockerfile*`, `docker-compose*.yml`
+- Falls back to source directories, config files, `Dockerfile*`, `docker-compose*.yml`
 
 ## Review Process
 
@@ -76,10 +76,10 @@ If no scope is provided, review:
 
 ## Common Issues to Flag
 - Missing type hints on public Python functions
-- Business logic leaking into controllers or Streamlit UI
+- Business logic leaking into controllers or UI layers
 - Hardcoded values that belong in config files
 - Inconsistent error handling (bare `except:`, swallowed exceptions)
-- Missing `st.cache_*` on expensive Streamlit operations
+- Missing caching on expensive UI operations
 - Docker images not pinned to a digest or specific tag
 - Duplicated logic across services that should be a shared utility
 - Unused imports / dead code

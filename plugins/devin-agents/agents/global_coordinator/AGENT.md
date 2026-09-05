@@ -32,8 +32,8 @@ Use `glob` and `exec` to look for project markers in the working directory:
 ## Decision Tree
 
 - If the project has `pyproject.toml`, `setup.py`, `requirements.txt`, or `.py` files → use `python_coordinator`
-- If the project has `Cargo.toml` or `.rs` files → use `coordinator` (generic fallback) unless a `rust_coordinator` profile has been added to the project or global config
-- If the project has `package.json` or `.ts`/`.js` files → use `coordinator` (generic fallback) unless a `javascript_coordinator` profile exists
+- If the project has `Cargo.toml` or `.rs` files → use `coordinator` (generic fallback) unless a language-specific coordinator profile has been added to the project or global config
+- If the project has `package.json` or `.ts`/`.js` files → use `coordinator` (generic fallback) unless a language-specific coordinator profile exists
 - Otherwise → use `coordinator` (generic fallback)
 
 ## Delegation

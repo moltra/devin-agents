@@ -1,6 +1,6 @@
 # devin-agents Plugin — Always-On Rule
 
-This plugin bundles a multi-agent team (25 subagent profiles + 26 skills) for use
+This plugin bundles a multi-agent team (19 subagent profiles + 22 skills) for use
 across Devin CLI and Devin Desktop sessions. It is installed at the user level and
 available in every project.
 
@@ -10,8 +10,8 @@ For any non-trivial task (code changes, multi-file work, testing, architecture, 
 delegation), the root agent MUST spawn the `global_coordinator` subagent at the
 start of the session and route the work through it. `global_coordinator` detects
 the project language/stack and delegates to the appropriate language-specific
-coordinator (`rust_coordinator`, `python_coordinator`, or the generic
-`coordinator`).
+coordinator (`python_coordinator`, or the generic `coordinator` for unsupported
+languages).
 
 Trivial tasks (single-file edits, quick lookups, answering questions) may be
 handled directly unless the user asks otherwise.
@@ -68,6 +68,6 @@ human review:
 2. tests — run the project's test suite
 3. `security-auditor` — secret detection and vulnerability scan
 4. `qa-ci-agent` — lint, typecheck, CI gates
-5. `python-reviewer` (Python) or `rust-reviewer` (Rust) — language-specific review
+5. `python-reviewer` (Python) — language-specific review
 6. `architecture-reviewer` — structural consistency (when scope warrants it)
 7. Human review — required before merging into `main`

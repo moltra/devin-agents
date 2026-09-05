@@ -42,7 +42,7 @@ Follow the telemetry and accountability rules in `patterns/agent-telemetry.md`. 
      passwords, or tokens).
 
 2. **Input validation**
-   - All user inputs (HTTP request params, Streamlit widgets, CLI
+   - All user inputs (HTTP request params, UI widgets, CLI
      args) must be validated.
    - Flag `eval()`, `exec()`, `os.system()`, `subprocess.call(shell=True)`
      with user-controlled input — injection risks.

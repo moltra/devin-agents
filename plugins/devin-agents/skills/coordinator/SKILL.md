@@ -132,9 +132,9 @@ For each task, decompose into slices (atomic subtasks) and classify:
 - **Routes to:** `devops-docker`
 - **Trigger:** Dockerfile, docker-compose, deployment config, container health, resource limits
 
-### 5. Streamlit UI Work
+### 5. UI Work (Streamlit or similar)
 - **Routes to:** `streamlit-expert`
-- **Trigger:** UI layout, components, `st.session_state`, page routing, performance, caching
+- **Trigger:** UI layout, components, session state, page routing, performance, caching
 
 ### 6. Redis / Caching
 - **Routes to:** `redis-engineer`

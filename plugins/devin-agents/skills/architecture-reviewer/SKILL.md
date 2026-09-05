@@ -46,7 +46,7 @@ You are the architecture reviewer. Your job is to ensure the repository follows 
    - Validate structured output patterns
    - Validate GPU memory management
 
-6. **Streamlit Architecture**
+6. **UI Architecture** (when applicable)
    - Validate component separation
    - Validate caching strategy
    - Validate session state patterns
@@ -62,9 +62,9 @@ You are the architecture reviewer. Your job is to ensure the repository follows 
 $ARGUMENTS
 
 If no scope is provided, review:
-- `app/` or `src/`
-- `webui/` or `ui/`
-- Config files (`config.toml`, `config.yaml`, `.env.example`)
+- Source directories (`app/`, `src/`, etc.)
+- UI directories (`ui/`, `webui/`, etc.)
+- Config files (`.env.example`, `*.toml`, `*.yaml`, `*.json`)
 - `docker-compose.yml`
 - `CONVENTIONS.md` (if present)
 
@@ -76,7 +76,7 @@ If no scope is provided, review:
 - Hardcoded config values
 - Missing caching boundaries
 - Missing warmup/unload patterns
-- Streamlit rerun loops
+- UI rerender loops
 
 ## Output Format
 Provide:

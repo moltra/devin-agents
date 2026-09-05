@@ -52,10 +52,10 @@ code changes thoroughly and report findings back to the parent agent.
    - Naming conventions (PEP 8, or project convention)
    - Dead code, unused imports, unreachable branches
 
-5. **Streamlit/Redis/Ollama patterns** (when applicable)
+5. **Framework-specific patterns** (when applicable)
    - Verify caching decorators are used correctly
-   - Check Redis connection error handling
-   - Verify Ollama streaming patterns don't block the UI
+   - Check external service connection error handling
+   - Verify streaming patterns don't block the UI
 
 ## Output Format
 

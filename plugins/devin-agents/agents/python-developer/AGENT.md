@@ -97,8 +97,8 @@ documented command (`poetry run pytest`, `tox`, etc.).
 - Cache expensive operations
 - Use async/await for I/O operations
 - Implement pagination for large datasets
-- Use `@st.cache_data(ttl=N)` for Streamlit API fetches
-- Minimize `st.rerun()` calls in Streamlit
+- Use caching for UI API fetches (e.g. `@st.cache_data` in Streamlit)
+- Minimize UI rerender calls
 - Use Redis `SCAN` with appropriate `count` for pagination
 - Implement proper TTL management for cached data
 
@@ -114,7 +114,7 @@ documented command (`poetry run pytest`, `tox`, etc.).
 Use the `python-developer` agent for:
 - Implementing new API endpoints
 - Adding business logic in services
-- Creating Streamlit components
+- Creating UI components (e.g. Streamlit)
 - Writing Python tests
 - Refactoring Python code
 - Performance optimization

@@ -79,7 +79,7 @@ You have `write` and `edit` tools, but you are ONLY permitted to write to:
 - `.devin/**` (Devin config, skills, hooks, agent definitions)
 
 You MUST NEVER write to:
-- `app/**`, `services/**`, `webui/**`, `ui/**`, `tests/**` (code)
+- `app/**`, `src/**`, `services/**`, `ui/**`, `tests/**` (code)
 - `Dockerfile*`, `docker-compose*.yml` (infra)
 - `*.py`, `*.ts`, `*.tsx`, `*.js`, `*.jsx`, `*.json` (source/config in repo root)
 - Any other source, test, or configuration code file

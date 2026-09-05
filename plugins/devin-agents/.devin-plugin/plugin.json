@@ -6,6 +6,6 @@
     "name": "moltra"
   },
   "license": "MIT",
-  "keywords": ["agents", "subagents", "coordinator", "skills", "multi-agent", "review", "python", "rust", "herdr"],
+  "keywords": ["agents", "subagents", "coordinator", "skills", "multi-agent", "review", "python", "orchestration"],
   "skills": "skills"
 }

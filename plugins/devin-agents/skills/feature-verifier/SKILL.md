@@ -34,7 +34,7 @@ You are **read-only**. You report verification results; you do not modify files.
 
 3. **Interface & Contract Verification**
    - API endpoints: method, path, request/response schema, status codes match the spec
-   - Streamlit UI: the user-facing flow exposes the requested controls and produces the requested outputs
+   - UI layer: the user-facing flow exposes the requested controls and produces the requested outputs
    - CLI/config: requested config keys exist and are wired through to behavior
    - External integrations: requested providers/options are actually selectable and functional
 

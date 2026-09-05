@@ -38,9 +38,9 @@ Naked `except:` or `except Exception:` is not acceptable — be specific.
 
 ### 2. Fallback Strategy
 If Redis is unresponsive, the code must transparently fall back to a
-thread-safe local Python dictionary memory buffer. Verify:
-- The fallback buffer is initialized (e.g. in `st.session_state` or a
-  module-level dict with a lock).
+thread-safe local in-memory buffer. Verify:
+- The fallback buffer is initialized (e.g. a module-level dict with a
+  lock, or a session-scoped cache).
 - The fallback logs a warning so operators know Redis is down.
 - The fallback path is actually exercised in tests.
 

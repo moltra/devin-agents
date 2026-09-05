@@ -47,9 +47,9 @@ You are the API specialist. Your job is to design and implement REST APIs with p
 $ARGUMENTS
 
 If no scope is provided, review:
-- `app/controllers/v1/`
-- `app/models/schema.py`
-- `app/asgi.py`
+- API endpoint/route files
+- Schema/model definitions
+- Application entry point
 - API-related configuration
 
 ## Common Issues to Check

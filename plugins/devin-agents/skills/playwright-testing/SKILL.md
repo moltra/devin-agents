@@ -52,9 +52,9 @@ You are the Playwright testing specialist. Your job is to create, execute, debug
 $ARGUMENTS
 
 If no scope is provided, review:
-- `tests/ui_tests.spec.ts`
-- `playwright.config.ts`
-- WebUI components
+- Test spec files (`*.spec.ts`, `*.test.ts`)
+- Playwright config (`playwright.config.ts`)
+- UI components
 - Test utilities
 
 ## Common Issues to Check

@@ -35,10 +35,9 @@ You are the Python developer. Your job is to implement Python backend logic, Fas
 $ARGUMENTS
 
 If no scope is provided, review:
-- `app/`
-- `services/`
-- `models/`
-- `tests/`
+- Source directories (`app/`, `src/`, `services/`, etc.)
+- Test directories (`tests/`, `test/`, etc.)
+- Configuration files
 
 ## Common Issues to Check
 - Missing error handling

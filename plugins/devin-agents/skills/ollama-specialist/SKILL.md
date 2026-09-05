@@ -52,7 +52,7 @@ You are the Ollama specialist. Your job is to implement and maintain Ollama LLM 
 $ARGUMENTS
 
 If no scope is provided, review:
-- LLM integration modules (e.g. `app/services/llm.py`, `services/llm.py`)
+- LLM integration modules
 - Ollama configuration files
 - LLM-related utilities
 - Model lifecycle management code

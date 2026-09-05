@@ -32,7 +32,6 @@ The system uses a hierarchical delegation pattern where a coordinator agent orch
 
 #### Security & Quality
 - **security-auditor-template**: Security scanning and vulnerability assessment
-- **video-pipeline-reviewer-template**: Video processing pipeline optimization
 
 #### Git Operations
 - **git-workflow-template**: Branch management and commit workflows
@@ -88,9 +87,8 @@ The system uses a hierarchical delegation pattern where a coordinator agent orch
 
 This repo also ships a **Devin plugin** at `plugins/devin-agents/` that bundles
 the full multi-agent team into a single installable unit. The plugin merges every
-unique agent and skill from the global Devin config (`~/.config/devin/`) and the
-project repos (MoneyPrinterTurbo, herdr, herdr-board, devin-desktop_automations)
-into one deduplicated package.
+unique agent and skill from the global Devin config (`~/.config/devin/`) and
+project repos into one deduplicated, generic package.
 
 ### What the plugin includes
 
@@ -132,7 +130,7 @@ plugins/devin-agents/
 devin plugins install ./plugins/devin-agents
 
 # Or from any location
-devin plugins install /mnt/samsungssd/repo/devin-desktop_automations/plugins/devin-agents
+devin plugins install /path/to/devin-desktop_automations/plugins/devin-agents
 ```
 
 Local installs are linked, so edits to the plugin files apply on the next session
