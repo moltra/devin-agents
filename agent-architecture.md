@@ -183,6 +183,8 @@ flowchart TD
 | | `testing-guardian` | swe-1-7-medium | Test coverage, quality, mocking |
 | | `qa-ci-agent` | swe-1-7-medium | CI/CD gates, lint, typecheck |
 | | `architecture-reviewer` | swe-1-7-medium | Module boundaries, dependency graph |
+| | `best-practices-reviewer` | swe-1-7-medium | Cross-language code quality |
+| | `feature-verifier` | swe-1-7-medium | Verify features match spec |
 | **Workflow** | `git-workflow` | swe-1-7-medium | Branch management, commits, merges |
 | | `documentation-agent` | swe-1-7-medium | README, API docs, migration guides |
 | | `playwright-testing` | swe-1-7-medium | E2E test creation and maintenance |

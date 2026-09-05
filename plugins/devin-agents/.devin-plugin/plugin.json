@@ -1,7 +1,7 @@
 {
   "name": "devin-agents",
   "version": "1.0.0",
-  "description": "Generic multi-agent team plugin for Devin — 19 subagent profiles, 22 skills, coordinator workflow, and automatic sub-agent recommendation. Project-agnostic: add your own specialists via the subagent-recommender skill.",
+  "description": "Generic multi-agent team plugin for Devin — 22 subagent profiles, 23 skills, coordinator workflow, and automatic sub-agent recommendation. Project-agnostic: add your own specialists via the subagent-recommender skill.",
   "author": {
     "name": "moltra"
   },

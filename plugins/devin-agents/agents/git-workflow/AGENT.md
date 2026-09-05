@@ -7,8 +7,6 @@ allowed-tools:
   - grep
   - glob
   - exec
-  - run_subagent
-  - read_subagent
 permissions:
   allow:
     - Exec(git *)

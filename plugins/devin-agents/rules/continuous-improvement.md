@@ -1,5 +1,5 @@
 ---
-trigger: always
+trigger: always_on
 description: Continuous improvement loop for the agent ecosystem — detects when profiles need refinement and routes to the subagent-curator for review, editing, and creation.
 ---
 

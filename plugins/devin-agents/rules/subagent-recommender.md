@@ -1,5 +1,5 @@
 ---
-trigger: always
+trigger: always_on
 description: Prompt the agent to recommend a new sub-agent profile when it detects repeated, unscoped, or cross-cutting work that no existing profile covers.
 ---
 

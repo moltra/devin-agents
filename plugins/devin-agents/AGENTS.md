@@ -1,6 +1,6 @@
 # devin-agents Plugin — Always-On Rule
 
-This plugin bundles a multi-agent team (20 subagent profiles + 23 skills) for use
+This plugin bundles a multi-agent team (22 subagent profiles + 23 skills) for use
 across Devin CLI and Devin Desktop sessions. It is installed at the user level and
 available in every project.
 
@@ -30,7 +30,8 @@ The plugin ships these custom subagent profiles (invoke by name via `run_subagen
 `redis-engineer`, `ollama-specialist`, `devops-docker`
 
 **Quality & safety:** `python-reviewer`, `swe-check`,
-`security-auditor`, `testing-guardian`, `qa-ci-agent`, `architecture-reviewer`
+`security-auditor`, `testing-guardian`, `qa-ci-agent`, `architecture-reviewer`,
+`best-practices-reviewer`, `feature-verifier`
 
 **Workflow & docs:** `git-workflow`, `documentation-agent`, `playwright-testing`
 

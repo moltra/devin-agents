@@ -9,7 +9,6 @@ allowed-tools:
   - edit
   - write
   - exec
-  - ask_user_question
 permissions:
   allow:
     - Exec(git diff*)

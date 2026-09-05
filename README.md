@@ -108,7 +108,7 @@ project repos into one deduplicated, generic package.
 
 ### What the plugin includes
 
-- **20 custom subagent profiles** (`agents/<name>/AGENT.md`) — coordinators,
+- **22 custom subagent profiles** (`agents/<name>/AGENT.md`) — coordinators,
   implementation specialists, reviewers, workflow agents, and a meta-agent
   (`subagent-curator`) that maintains the agent ecosystem itself.
 - **23 skills** (`skills/<name>/SKILL.md`) — invokable skills including the
@@ -132,11 +132,11 @@ plugins/devin-agents/
 ├── rules/
 │   ├── subagent-recommender.md   # triggered rule: detect coverage gaps
 │   └── continuous-improvement.md # triggered rule: ecosystem self-improvement
-├── agents/                  # 20 subagent profiles
+├── agents/                  # 22 subagent profiles
 │   ├── global_coordinator/AGENT.md
 │   ├── coordinator/AGENT.md
 │   ├── subagent-curator/AGENT.md  # meta-agent: reviews/edits/creates profiles
-│   └── … (17 more)
+│   └── … (19 more)
 └── skills/                  # 23 skills
     ├── subagent-recommender/SKILL.md  # detect gaps, propose new sub-agents
     ├── subagent-curator/SKILL.md      # review/edit/create/audit profiles
