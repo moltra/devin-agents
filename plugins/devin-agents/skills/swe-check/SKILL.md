@@ -47,7 +47,7 @@ You are the SWE check agent. Your job is to detect bugs in non-Python artifacts 
    - Validate resource usage
 
 6. **Configuration Files**
-   - Validate config.toml structure
+   - Validate config file structure (TOML, YAML, JSON, etc.)
    - Check for hardcoded values
    - Ensure proper environment variable usage
    - Validate security settings
@@ -58,10 +58,9 @@ $ARGUMENTS
 If no scope is provided, review:
 - `Dockerfile*`
 - `docker-compose*.yml`
-- `config.toml`
-- `*.env.example`
-- Streamlit files
-- Ollama configuration
+- Config files (`config.toml`, `config.yaml`, `.env.example`)
+- UI framework configuration
+- LLM/Ollama configuration (if present)
 
 ## Common Issues to Check
 - Missing health checks

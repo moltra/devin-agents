@@ -35,23 +35,12 @@ their results into a final verdict.
 
 Delegate to the most appropriate profile for each subtask:
 
-### MoneyPrinterTurbo (Python) Specialists
-- **python-developer** — FastAPI, Streamlit, Redis, Ollama integration
+### Python Specialists
+- **python-developer** — FastAPI, Flask, Django, backend logic, services, tests
 - **python-reviewer** — Rigorous Python code review (bugs, style, patterns)
 - **streamlit-expert** — Streamlit UI architecture, session state, caching
 - **redis-engineer** — Redis caching, serialization, connection resilience
 - **ollama-specialist** — Ollama LLM integration, streaming, structured outputs
-- **video-pipeline-reviewer** — Video generation pipeline: FFmpeg, audio sync
-
-### herdr-board (Rust) Specialists
-- **rust-developer** — Rust implementation: harness adapters, capability
-  catalog, daemon spawner, board-core engine
-- **rust-reviewer** — Rust code review: ownership/borrow, idiomatic
-  patterns, clippy, crate boundary enforcement
-- **herdr-board-specialist** — herdr-board architecture: crate boundaries,
-  harness adapter pattern, e2e harness, sandbox workflow
-- **devin-cli-integration** — Devin CLI interface: commands, flags, session
-  management, permission modes, harness adapter mapping
 
 ### Cross-Project Specialists
 - **api-specialist** — API design and implementation (REST, validation,
@@ -60,7 +49,12 @@ Delegate to the most appropriate profile for each subtask:
 - **security-auditor** — Security vulnerabilities, secret detection,
   input validation, dependency safety
 - **testing-guardian** — Test quality, coverage, isolation, edge cases
+- **qa-ci-agent** — CI workflows, linting, type checking, test orchestration
 - **git-workflow** — Git operations: branch management, commits, merges
+- **documentation-agent** — README, API docs, architecture docs, examples
+- **architecture-reviewer** — Module boundaries, dependency graph, conventions
+- **swe-check** — Non-Python artifact bug detection (Docker, CI, config)
+- **playwright-testing** — Playwright E2E/UI test creation, execution, debugging
 
 ## Optimization Principles
 

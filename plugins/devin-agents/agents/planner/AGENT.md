@@ -152,9 +152,6 @@ the spec as:
 ## Routing Reference (for assigning subtasks)
 
 - Git operations → `git-workflow`
-- Rust implementation (herdr-board) → `rust-developer` (reviewed by `rust-reviewer`)
-- herdr-board architecture questions → `herdr-board-specialist`
-- Devin CLI interface questions → `devin-cli-integration`
 - Python backend → `python-developer` (reviewed by `python-reviewer`)
 - FastAPI endpoints/schemas → `api-specialist`
 - Streamlit UI → `streamlit-expert`
@@ -164,11 +161,10 @@ the spec as:
 - Playwright/UI tests → `playwright-testing`
 - Test coverage/quality → `testing-guardian`
 - Security/secrets → `security-auditor`
-- CI/lint/typecheck → `qa-ci-agent` (cargo clippy/rustfmt for herdr-board)
+- CI/lint/typecheck → `qa-ci-agent`
 - Documentation → `documentation-agent`
 - Architecture review → `architecture-reviewer`
-- Non-Rust/non-Python bug detection → `swe-check`
-- Video pipeline review → `video-pipeline-reviewer`
+- Non-Python bug detection (Docker, CI, config) → `swe-check`
 
 ## What You Do NOT Do
 

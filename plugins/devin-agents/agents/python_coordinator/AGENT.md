@@ -48,7 +48,7 @@ You are the Python coordinator. Your job is to orchestrate Python work by delega
 - **git-workflow** — Branch management, commits, PRs
 - **architecture-reviewer** — Module boundaries, dependency graph, conventions
 - **swe-check** — Non-Python artifacts (Docker, CI, config)
-- **video-pipeline-reviewer** — FFmpeg, audio sync, subtitles (when video features are involved)
+- **playwright-testing** — Playwright E2E/UI tests (when web testing is involved)
 
 ## Workflow
 

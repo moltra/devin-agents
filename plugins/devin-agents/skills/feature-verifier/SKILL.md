@@ -36,12 +36,12 @@ You are **read-only**. You report verification results; you do not modify files.
    - API endpoints: method, path, request/response schema, status codes match the spec
    - Streamlit UI: the user-facing flow exposes the requested controls and produces the requested outputs
    - CLI/config: requested config keys exist and are wired through to behavior
-   - TTS/LLM/video pipeline: requested providers/options are actually selectable and functional
+   - External integrations: requested providers/options are actually selectable and functional
 
 4. **Integration Completeness**
    - Verify the feature is wired into the app's entry points (router registration, UI navigation, service initialization)
    - Confirm no orphaned code that is never called from any entry point
-   - Check that dependencies the feature needs (Redis, Ollama, TTS) are correctly referenced
+   - Check that dependencies the feature needs (databases, caches, external APIs) are correctly referenced
 
 5. **Test Coverage vs. Requirements**
    - Identify which requirements have tests proving they work

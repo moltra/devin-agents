@@ -24,15 +24,13 @@ delegates will perform.
 The plugin ships these custom subagent profiles (invoke by name via `run_subagent`):
 
 **Coordinators:** `global_coordinator`, `coordinator`, `python_coordinator`,
-`rust_coordinator`, `planner`
+`planner`
 
 **Implementation:** `python-developer`, `api-specialist`, `streamlit-expert`,
-`redis-engineer`, `ollama-specialist`, `devops-docker`, `rust-developer`,
-`herdr-board-specialist`, `devin-cli-integration`
+`redis-engineer`, `ollama-specialist`, `devops-docker`
 
-**Quality & safety:** `python-reviewer`, `rust-reviewer`, `swe-check`,
-`security-auditor`, `testing-guardian`, `qa-ci-agent`, `architecture-reviewer`,
-`video-pipeline-reviewer`
+**Quality & safety:** `python-reviewer`, `swe-check`,
+`security-auditor`, `testing-guardian`, `qa-ci-agent`, `architecture-reviewer`
 
 **Workflow & docs:** `git-workflow`, `documentation-agent`, `playwright-testing`
 

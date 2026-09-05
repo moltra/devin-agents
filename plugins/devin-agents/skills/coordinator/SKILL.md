@@ -29,14 +29,14 @@ Everything is delegated. Your only outputs are:
 
 ## What You Do NOT Do
 
-- NO implementation — delegate to `rust-developer`, `python-developer`, etc.
+- NO implementation — delegate to `python-developer`, `api-specialist`, etc.
 - NO file authorship — delegate specs to `planner`, code to specialists, docs to `documentation-agent`
-- NO code review — delegate to `rust-reviewer`, `python-reviewer`, `architecture-reviewer`
+- NO code review — delegate to `python-reviewer`, `architecture-reviewer`
 - NO testing — delegate to `testing-guardian`, `playwright-testing`
 - NO CI/build runs — delegate to `qa-ci-agent`
 - NO git mutations — delegate ALL git operations to `git-workflow`
 - NO security scanning — delegate to `security-auditor`
-- NO architecture analysis — delegate to `herdr-board-specialist`, `architecture-reviewer`
+- NO architecture analysis — delegate to `architecture-reviewer`
 - NO running scripts — delegate to the appropriate specialist
 - NO deep code reading for analysis — delegate to a specialist who reads and reports back
 
@@ -55,32 +55,27 @@ Everything is delegated. Your only outputs are:
 
 You route work to these profiles:
 
-### herdr-board (Rust) Specialists
-- **rust-developer** — Rust implementation: harness adapters, capability catalog, daemon spawner, board-core engine
-- **rust-reviewer** — Rust code review: ownership/borrow, idiomatic patterns, clippy, crate boundary enforcement
-- **herdr-board-specialist** — herdr-board architecture: crate boundaries, harness adapter pattern, e2e harness, sandbox workflow
-- **devin-cli-integration** — Devin CLI interface: commands, flags, session management, permission modes, harness adapter mapping
-
 ### Planning & Orchestration
 - **planner** — Planning specialist that explores the codebase and produces spec/plan files (PLAN.md, tasks/<id>.md)
 - **git-workflow** — Git operations: branch management, commits, merges, and validation
 
-### Cross-Project Specialists
+### Python Specialists
 - **python-developer** — Python backend logic, FastAPI endpoints, services, tests, integrations
 - **python-reviewer** — Rigorous Python code review (bugs, style, patterns, type safety)
-- **swe-check** — Bug detection for non-Rust artifacts: Docker, sandbox, E2E harness, Herdr integration, config
 - **streamlit-expert** — Streamlit UI architecture, session state, caching, rerun performance
 - **redis-engineer** — Redis caching, serialization, connection resilience, fallback strategies
 - **ollama-specialist** — Ollama LLM integration, streaming, structured outputs, async patterns
+
+### Cross-Project Specialists
+- **swe-check** — Bug detection for non-Python artifacts: Docker, CI, config, scripts
 - **testing-guardian** — Test coverage, test quality, mocking strategy
 - **security-auditor** — Security vulnerabilities, secret detection, input validation
 - **api-specialist** — API design and implementation: REST endpoints, validation, async patterns, OpenAPI
 - **devops-docker** — DevOps and Docker: container orchestration, Docker Compose, deployment configs, container health
 - **documentation-agent** — README, API docs, architecture docs, migration guides, examples
 - **architecture-reviewer** — Repository architecture, module boundaries, dependency graph, conventions
-- **qa-ci-agent** — CI workflows, linting, type checking, test orchestration, quality gates (cargo clippy/rustfmt for herdr-board)
+- **qa-ci-agent** — CI workflows, linting, type checking, test orchestration, quality gates
 - **playwright-testing** — Playwright tests for WebUI: test creation, execution, debugging, maintenance
-- **video-pipeline-reviewer** — Video generation pipeline: FFmpeg, audio sync, subtitles, clip relevance, quality grading
 
 ## Planning and Spec-Driven Workflow
 
@@ -174,61 +169,29 @@ For each task, decompose into slices (atomic subtasks) and classify:
 - **Routes to:** `playwright-testing`
 - **Trigger:** Playwright test creation, UI test debugging, browser automation, flaky test fixes
 
-### 14. Video Pipeline Review
-- **Routes to:** `video-pipeline-reviewer`
-- **Trigger:** Video generation pipeline issues, FFmpeg errors, audio sync problems, subtitle alignment, clip relevance, quality grading
-- **Always runs after:** `python-developer` or `ollama-specialist` work involving video output
-
-### 15. Rust Implementation (herdr-board)
-- **Routes to:** `rust-developer`
-- **Trigger:** Rust code changes, harness adapters, capability catalog, daemon spawner, CLI/TUI code
-- **Reviewed by:** `rust-reviewer` after implementation
-
-### 16. Rust Code Review (herdr-board)
-- **Routes to:** `rust-reviewer`
-- **Trigger:** Code review of Rust changes, clippy compliance, ownership/borrow, crate boundaries
-- **Always runs after:** `rust-developer` implementation work
-
-### 17. herdr-board Architecture
-- **Routes to:** `herdr-board-specialist`
-- **Trigger:** Architecture questions, crate boundary decisions, harness adapter pattern guidance, e2e harness design, sandbox workflow
-- **Can run before:** implementation to guide the planner
-
-### 18. Devin CLI Integration
-- **Routes to:** `devin-cli-integration`
-- **Trigger:** Devin CLI interface questions, flag mapping, session management, permission modes, harness adapter mapping for Devin
-- **Can run before:** implementation to verify CLI behavior
-
 ### Fallback Rules
 
 - **File-type based:**
-  - `.rs` → `rust-developer`
-  - `.rs` in `crates/board-core/src/harness/` → `rust-developer` (with `herdr-board-specialist` consultation)
-  - `Cargo.toml` or `Cargo.lock` → `rust-developer`
-  - `scripts/sandbox.sh` → `devops-docker` or `swe-check`
-  - `e2e/*.sh` → `rust-developer` (with `swe-check` validation)
   - `.py` → `python-developer`
   - `.py` with `streamlit` imports → `streamlit-expert`
   - `Dockerfile` or `docker-compose.yml` → `devops-docker`
-  - `app/controllers/v1/*.py` or `app/models/schema.py` → `api-specialist`
-  - `app/services/llm.py` or `app/services/video_grader.py` → `ollama-specialist`
+  - API endpoint/schema files → `api-specialist`
+  - LLM integration files → `ollama-specialist`
   - `*.spec.ts` or `playwright.config.ts` → `playwright-testing`
-  - `*.mp4`, `*.avi`, `*.mkv`, or FFmpeg-related files → `video-pipeline-reviewer`
 - **No match:** coordinator handles high-level analysis, then delegates implementation and verification.
 
 ## Verification Routing
 
 After implementation:
 
-1. **swe-check** — non-Rust/non-Python bug detection after `api-specialist`, `streamlit-expert`, `ollama-specialist`, `devops-docker`, `redis-engineer`.
+1. **swe-check** — non-Python bug detection after `api-specialist`, `streamlit-expert`, `ollama-specialist`, `devops-docker`, `redis-engineer`.
 2. **testing-guardian** — run tests and coverage.
 3. **security-auditor** — scan for secrets and vulnerabilities.
 4. **python-reviewer** — code review after Python-related work.
-5. **rust-reviewer** — code review after Rust/herdr-board work (clippy, ownership, crate boundaries).
-6. **video-pipeline-reviewer** — review video generation pipeline after `python-developer` or `ollama-specialist` work involving video output.
-7. **qa-ci-agent** — ensure CI workflows, linting, type checking, and gates are green (cargo clippy, sandbox gates for herdr-board).
-8. **devops-docker** — validate container build if Docker files changed.
-9. **git-workflow** — merge only after green checks, human review, and coordinator approval.
+5. **architecture-reviewer** — structural review when module boundaries are affected.
+6. **qa-ci-agent** — ensure CI workflows, linting, type checking, and gates are green.
+7. **devops-docker** — validate container build if Docker files changed.
+8. **git-workflow** — merge only after green checks, human review, and coordinator approval.
 
 Human review MUST occur before merging into main.
 
@@ -296,7 +259,7 @@ Before starting ANY task that involves code changes, the coordinator MUST:
 4. Delegate each subtask via `run_subagent` with clear scope and metadata.
 5. Run independent subtasks in parallel where safe.
 6. Collect results from all subagents.
-7. Delegate verification to review/QA subagents (rust-reviewer, testing-guardian, qa-ci-agent, etc.).
+7. Delegate verification to review/QA subagents (python-reviewer, testing-guardian, qa-ci-agent, etc.).
 8. Delegate human review coordination and final merge to `git-workflow`.
 9. Synthesize a final report:
    - Cross-cutting issues

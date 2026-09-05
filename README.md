@@ -94,9 +94,9 @@ into one deduplicated package.
 
 ### What the plugin includes
 
-- **25 custom subagent profiles** (`agents/<name>/AGENT.md`) — coordinators,
+- **19 custom subagent profiles** (`agents/<name>/AGENT.md`) — coordinators,
   implementation specialists, reviewers, and workflow agents.
-- **28 skills** (`skills/<name>/SKILL.md`) — invokable skills including the
+- **22 skills** (`skills/<name>/SKILL.md`) — invokable skills including the
   new `subagent-recommender` that automatically proposes new sub-agents when it
   detects a coverage gap.
 - **Always-on rule** (`AGENTS.md`) — installs the coordinator-first workflow and
@@ -114,15 +114,15 @@ plugins/devin-agents/
 ├── AGENTS.md                # always-on rule (coordinator workflow + auto-recommend)
 ├── rules/
 │   └── subagent-recommender.md   # triggered rule
-├── agents/                  # 25 subagent profiles
+├── agents/                  # 19 subagent profiles
 │   ├── global_coordinator/AGENT.md
 │   ├── coordinator/AGENT.md
 │   ├── python-developer/AGENT.md
-│   └── … (22 more)
-└── skills/                  # 28 skills
+│   └── … (16 more)
+└── skills/                  # 22 skills
     ├── subagent-recommender/SKILL.md   # auto-recommend new sub-agents
     ├── coordinator/SKILL.md
-    └── … (26 more)
+    └── … (20 more)
 ```
 
 ### Install the plugin

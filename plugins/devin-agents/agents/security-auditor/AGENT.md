@@ -35,7 +35,7 @@ Follow the telemetry and accountability rules in `patterns/agent-telemetry.md`. 
    - Scan for API keys, passwords, tokens, and credentials in code and
      config files.
    - Flag any `.env` file that is not in `.gitignore`.
-   - Check for secrets in docker-compose files, config.toml, and
+   - Check for secrets in docker-compose files, config files, and
      example files (even examples should use placeholders, not real
      keys).
    - Verify no secrets are logged (logger calls that include API keys,

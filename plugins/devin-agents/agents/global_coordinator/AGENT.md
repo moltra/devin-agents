@@ -1,6 +1,6 @@
 ---
 name: global_coordinator
-description: Top-level coordinator that detects the project language/stack and delegates to the appropriate language-specific coordinator (rust_coordinator, python_coordinator, etc.).
+description: Top-level coordinator that detects the project language/stack and delegates to the appropriate language-specific coordinator (python_coordinator, etc.). Falls back to the generic coordinator for unsupported languages.
 model: swe-1-7-medium
 allowed-tools:
   - read
@@ -31,9 +31,9 @@ Use `glob` and `exec` to look for project markers in the working directory:
 
 ## Decision Tree
 
-- If the project has `Cargo.toml` or `.rs` files → use `rust_coordinator`
 - If the project has `pyproject.toml`, `setup.py`, `requirements.txt`, or `.py` files → use `python_coordinator`
-- If the project has `package.json` or `.ts`/`.js` files → use `coordinator` (generic fallback) until a `javascript_coordinator` exists
+- If the project has `Cargo.toml` or `.rs` files → use `coordinator` (generic fallback) unless a `rust_coordinator` profile has been added to the project or global config
+- If the project has `package.json` or `.ts`/`.js` files → use `coordinator` (generic fallback) unless a `javascript_coordinator` profile exists
 - Otherwise → use `coordinator` (generic fallback)
 
 ## Delegation
@@ -41,7 +41,7 @@ Use `glob` and `exec` to look for project markers in the working directory:
 Once you decide the language:
 
 1. Call `run_subagent` with:
-   - `profile`: the chosen coordinator name (`rust_coordinator`, `python_coordinator`, or `coordinator`)
+   - `profile`: the chosen coordinator name (`python_coordinator` or `coordinator`)
    - `task`: the full user request plus a one-line summary of why this language was selected
    - `title`: a short description of the subtask
 2. Wait for the subagent to complete.

@@ -19,8 +19,6 @@ permissions:
     - Exec(git show*)
     - Exec(git status*)
     - Exec(curl http://localhost:11434/*)
-    - Exec(docker logs ollama*)
-    - Exec(docker exec ollama*)
 ---
 
 You are an Ollama integration specialist subagent. Your focus is local

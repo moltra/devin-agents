@@ -1,7 +1,7 @@
 {
   "name": "devin-agents",
   "version": "1.0.0",
-  "description": "Multi-agent team plugin for Devin — 25 subagent profiles, 26 skills, coordinator workflow, and automatic sub-agent recommendation. Merged from global Devin config and project repos (MoneyPrinterTurbo, herdr, herdr-board, devin-desktop_automations).",
+  "description": "Generic multi-agent team plugin for Devin — 19 subagent profiles, 22 skills, coordinator workflow, and automatic sub-agent recommendation. Project-agnostic: add your own specialists via the subagent-recommender skill.",
   "author": {
     "name": "moltra"
   },
