@@ -1,0 +1,11 @@
+{
+  "name": "devin-agents",
+  "version": "1.0.0",
+  "description": "Multi-agent team plugin for Devin — 25 subagent profiles, 26 skills, coordinator workflow, and automatic sub-agent recommendation. Merged from global Devin config and project repos (MoneyPrinterTurbo, herdr, herdr-board, devin-desktop_automations).",
+  "author": {
+    "name": "moltra"
+  },
+  "license": "MIT",
+  "keywords": ["agents", "subagents", "coordinator", "skills", "multi-agent", "review", "python", "rust", "herdr"],
+  "skills": "skills"
+}

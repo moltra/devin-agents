@@ -84,6 +84,81 @@ The system uses a hierarchical delegation pattern where a coordinator agent orch
 └── README.md                 # This file
 ```
 
+## Devin Plugin (`plugins/devin-agents/`)
+
+This repo also ships a **Devin plugin** at `plugins/devin-agents/` that bundles
+the full multi-agent team into a single installable unit. The plugin merges every
+unique agent and skill from the global Devin config (`~/.config/devin/`) and the
+project repos (MoneyPrinterTurbo, herdr, herdr-board, devin-desktop_automations)
+into one deduplicated package.
+
+### What the plugin includes
+
+- **25 custom subagent profiles** (`agents/<name>/AGENT.md`) — coordinators,
+  implementation specialists, reviewers, and workflow agents.
+- **28 skills** (`skills/<name>/SKILL.md`) — invokable skills including the
+  new `subagent-recommender` that automatically proposes new sub-agents when it
+  detects a coverage gap.
+- **Always-on rule** (`AGENTS.md`) — installs the coordinator-first workflow and
+  the auto-recommend guidance in every session.
+- **Triggered rule** (`rules/subagent-recommender.md`) — prompts the agent to
+  invoke the recommender skill when it sees repeated, unscoped, or cross-cutting
+  work.
+
+### Plugin layout
+
+```
+plugins/devin-agents/
+├── .devin-plugin/
+│   └── plugin.json          # manifest
+├── AGENTS.md                # always-on rule (coordinator workflow + auto-recommend)
+├── rules/
+│   └── subagent-recommender.md   # triggered rule
+├── agents/                  # 25 subagent profiles
+│   ├── global_coordinator/AGENT.md
+│   ├── coordinator/AGENT.md
+│   ├── python-developer/AGENT.md
+│   └── … (22 more)
+└── skills/                  # 28 skills
+    ├── subagent-recommender/SKILL.md   # auto-recommend new sub-agents
+    ├── coordinator/SKILL.md
+    └── … (26 more)
+```
+
+### Install the plugin
+
+```bash
+# From the repo root
+devin plugins install ./plugins/devin-agents
+
+# Or from any location
+devin plugins install /mnt/samsungssd/repo/devin-desktop_automations/plugins/devin-agents
+```
+
+Local installs are linked, so edits to the plugin files apply on the next session
+— no `update` needed. Verify with:
+
+```bash
+devin plugins list
+devin plugins info devin-agents
+```
+
+Skills become available as `/devin-agents:<skill>` slash commands. Subagent
+profiles are available to `run_subagent` by name.
+
+### Automatic sub-agent recommendation
+
+The plugin's `subagent-recommender` skill + rule makes Devin proactively suggest
+new sub-agent profiles when it detects:
+
+- The same task type handled inline 3+ times with no matching specialist
+- Cross-cutting work that would benefit from an isolated context
+- A coverage gap no existing profile fills
+- An explicit user request for a new specialist
+
+The skill drafts a complete `AGENT.md` (name, model, tools, system prompt) and
+presents it for approval before writing any files.
+
 ## Installation
 
 ### Quick Start
