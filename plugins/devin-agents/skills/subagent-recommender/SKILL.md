@@ -114,14 +114,20 @@ Use `ask_user_question` to present:
 ### 6. Create on approval
 
 Only after the user approves:
-1. Create the directory and write `AGENT.md` (and `SKILL.md` if approved).
-2. Log the creation with the coordinator logger if
+1. **Route to the `subagent-curator` agent** to create the profile. The
+   curator will validate the proposal, ensure frontmatter correctness,
+   apply minimum-access principles, and write the files. This keeps the
+   creation process consistent and offloads the heavy work from the
+   parent agent's context.
+2. Alternatively, if the curator is unavailable, create the directory and
+   write `AGENT.md` (and `SKILL.md` if approved) directly.
+3. Log the creation with the coordinator logger if
    `.devin/hooks/log_coordinator.sh` exists:
    ```bash
    .devin/hooks/log_coordinator.sh decision "Created sub-agent profile: <name>"
    ```
-3. Tell the user the profile is available on the next session (or immediately if
-   they restart the session).
+4. Tell the user the profile is available on the next session (or
+   immediately if they restart the session).
 
 ## Anti-patterns
 

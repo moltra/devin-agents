@@ -92,16 +92,19 @@ project repos into one deduplicated, generic package.
 
 ### What the plugin includes
 
-- **19 custom subagent profiles** (`agents/<name>/AGENT.md`) — coordinators,
-  implementation specialists, reviewers, and workflow agents.
-- **22 skills** (`skills/<name>/SKILL.md`) — invokable skills including the
-  new `subagent-recommender` that automatically proposes new sub-agents when it
-  detects a coverage gap.
-- **Always-on rule** (`AGENTS.md`) — installs the coordinator-first workflow and
-  the auto-recommend guidance in every session.
-- **Triggered rule** (`rules/subagent-recommender.md`) — prompts the agent to
-  invoke the recommender skill when it sees repeated, unscoped, or cross-cutting
-  work.
+- **20 custom subagent profiles** (`agents/<name>/AGENT.md`) — coordinators,
+  implementation specialists, reviewers, workflow agents, and a meta-agent
+  (`subagent-curator`) that maintains the agent ecosystem itself.
+- **23 skills** (`skills/<name>/SKILL.md`) — invokable skills including the
+  `subagent-recommender` (detects coverage gaps and proposes new sub-agents) and
+  `subagent-curator` (reviews, edits, creates, and audits profiles).
+- **Always-on rule** (`AGENTS.md`) — installs the coordinator-first workflow,
+  the auto-recommend guidance, and the continuous improvement loop in every
+  session.
+- **Triggered rules** (`rules/`) — `subagent-recommender.md` prompts the agent
+  to invoke the recommender skill when it sees repeated, unscoped, or
+  cross-cutting work; `continuous-improvement.md` ties the recommender and
+  curator together into a self-improving ecosystem.
 
 ### Plugin layout
 
@@ -109,16 +112,18 @@ project repos into one deduplicated, generic package.
 plugins/devin-agents/
 ├── .devin-plugin/
 │   └── plugin.json          # manifest
-├── AGENTS.md                # always-on rule (coordinator workflow + auto-recommend)
+├── AGENTS.md                # always-on rule (coordinator workflow + improvement loop)
 ├── rules/
-│   └── subagent-recommender.md   # triggered rule
-├── agents/                  # 19 subagent profiles
+│   ├── subagent-recommender.md   # triggered rule: detect coverage gaps
+│   └── continuous-improvement.md # triggered rule: ecosystem self-improvement
+├── agents/                  # 20 subagent profiles
 │   ├── global_coordinator/AGENT.md
 │   ├── coordinator/AGENT.md
-│   ├── python-developer/AGENT.md
-│   └── … (16 more)
-└── skills/                  # 22 skills
-    ├── subagent-recommender/SKILL.md   # auto-recommend new sub-agents
+│   ├── subagent-curator/AGENT.md  # meta-agent: reviews/edits/creates profiles
+│   └── … (17 more)
+└── skills/                  # 23 skills
+    ├── subagent-recommender/SKILL.md  # detect gaps, propose new sub-agents
+    ├── subagent-curator/SKILL.md      # review/edit/create/audit profiles
     ├── coordinator/SKILL.md
     └── … (20 more)
 ```
@@ -155,7 +160,33 @@ new sub-agent profiles when it detects:
 - An explicit user request for a new specialist
 
 The skill drafts a complete `AGENT.md` (name, model, tools, system prompt) and
-presents it for approval before writing any files.
+presents it for approval. On approval, the `subagent-curator` agent creates and
+validates the profile.
+
+### Continuous agent improvement
+
+The plugin includes a self-improving ecosystem via two complementary components:
+
+- **`subagent-recommender`** (sensor) — detects coverage gaps and proposes new
+  profiles
+- **`subagent-curator`** (actuator) — reviews, edits, creates, and audits
+  profiles for consistency, genericity, quality, and coverage
+
+The `continuous-improvement.md` rule ties them together with automatic triggers:
+
+- 5+ subagent calls in a session → suggest a lightweight audit
+- 3+ corrections to the same agent → its profile needs refinement
+- Stale references or genericity drift → curator fixes them
+- User request → run a full audit or improvement cycle
+
+Usage:
+
+```bash
+/devin-agents:subagent-curator audit     # full ecosystem audit
+/devin-agents:subagent-curator improve   # top improvements cycle
+/devin-agents:subagent-curator edit <name>  # edit a specific profile
+/devin-agents:subagent-curator create <name> # create a new profile
+```
 
 ## Installation
 

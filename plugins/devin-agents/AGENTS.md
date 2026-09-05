@@ -1,6 +1,6 @@
 # devin-agents Plugin — Always-On Rule
 
-This plugin bundles a multi-agent team (19 subagent profiles + 22 skills) for use
+This plugin bundles a multi-agent team (20 subagent profiles + 23 skills) for use
 across Devin CLI and Devin Desktop sessions. It is installed at the user level and
 available in every project.
 
@@ -34,6 +34,9 @@ The plugin ships these custom subagent profiles (invoke by name via `run_subagen
 
 **Workflow & docs:** `git-workflow`, `documentation-agent`, `playwright-testing`
 
+**Meta:** `subagent-curator` — reviews, edits, creates, and audits sub-agent
+profiles; enforces consistency, genericity, and minimum-access principles
+
 ## Automatic sub-agent recommendation
 
 When the agent detects **repeated, unscoped, or cross-cutting work** that no
@@ -52,12 +55,32 @@ Signals that trigger a recommendation:
 
 The skill produces a proposed `AGENT.md` definition (name, description, model,
 allowed-tools, system prompt) and a matching `SKILL.md` if appropriate. The agent
-presents the proposal to the user for approval before writing any files. Proposed
-profiles are written to the project's `.devin/agents/<name>/AGENT.md` (or the
-global `~/.config/devin/agents/<name>/AGENT.md` if the user prefers a global
-profile).
+presents the proposal to the user for approval. On approval, the
+`subagent-curator` agent creates and validates the profile. Proposed profiles are
+written to the project's `.devin/agents/<name>/AGENT.md` (or the global
+`~/.config/devin/agents/<name>/AGENT.md` if the user prefers a global profile).
 
-Never silently create a sub-agent. Always propose, get approval, then create.
+Never silently create a sub-agent. Always propose, get approval, then create via
+the curator.
+
+## Continuous agent improvement
+
+The agent ecosystem is self-improving. The `subagent-recommender` skill is the
+**sensor** that detects gaps; the `subagent-curator` agent is the **actuator**
+that reviews, edits, and creates profiles. The
+`rules/continuous-improvement.md` rule ties them together.
+
+Improvement triggers:
+
+- A session used 5+ subagent calls → suggest a lightweight audit
+- The same subagent needed 3+ corrections → its profile needs refinement
+- A coverage gap was detected → the recommender proposes, the curator creates
+- A stale reference or genericity drift was found → the curator fixes it
+- The user requests an audit or improvement cycle
+
+To run an improvement cycle: `/devin-agents:subagent-curator improve`
+To run a full audit: `/devin-agents:subagent-curator audit`
+To edit a specific profile: `/devin-agents:subagent-curator edit <name>`
 
 ## Verification pipeline
 

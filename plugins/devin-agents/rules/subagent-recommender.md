@@ -19,7 +19,8 @@ When you notice ANY of these signals during a session, invoke the
 
 The skill will inventory existing profiles, prove the gap is real, draft a
 complete `AGENT.md` (and optional `SKILL.md`), and present it for your approval
-before writing any files.
+before writing any files. On approval, route to the `subagent-curator` agent to
+create and validate the profile.
 
 Do NOT silently create sub-agent profiles. Always propose first, get approval,
-then create.
+then create via the curator.
