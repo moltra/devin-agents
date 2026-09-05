@@ -12,8 +12,8 @@ The templates in this repository are designed to be **generic starting points**.
 
 ```bash
 # Clone repository
-git clone https://github.com/moltra/devin-desktop_automations.git
-cd devin-desktop_automations
+git clone https://github.com/moltra/devin-agents.git
+cd devin-agents
 
 # Install to your local config
 bash scripts/install-agents.sh
@@ -269,7 +269,7 @@ When the shared repository is updated:
 
 ```bash
 # Pull latest templates
-cd devin-desktop_automations
+cd devin-agents
 git pull
 
 # Review changes

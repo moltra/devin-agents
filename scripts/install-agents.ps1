@@ -45,7 +45,7 @@
     .\scripts\install-agents.ps1 -DevinConfig "C:\Users\Me\AppData\Roaming\devin"
 
 .EXAMPLE
-    irm https://raw.githubusercontent.com/moltra/devin-desktop_automations/master/scripts/install-agents.ps1 | iex
+    irm https://raw.githubusercontent.com/moltra/devin-agents/main/scripts/install-agents.ps1 | iex
 #>
 [CmdletBinding()]
 param(
@@ -53,8 +53,8 @@ param(
     [switch]$Local,
     [switch]$Global,
     [string]$InstallMode = "",
-    [string]$RepoUrl = "https://github.com/moltra/devin-desktop_automations.git",
-    [string]$RepoBranch = "master"
+    [string]$RepoUrl = "https://github.com/moltra/devin-agents.git",
+    [string]$RepoBranch = "main"
 )
 
 $ErrorActionPreference = "Stop"

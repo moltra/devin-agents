@@ -6,7 +6,7 @@
 #     bash scripts/install-agents.sh
 #
 #   Run standalone (downloads the repository automatically):
-#     bash <(curl -fsSL https://raw.githubusercontent.com/moltra/devin-desktop_automations/master/scripts/install-agents.sh)
+#     bash <(curl -fsSL https://raw.githubusercontent.com/moltra/devin-agents/main/scripts/install-agents.sh)
 #
 #   Force a specific scope without prompting:
 #     INSTALL_MODE=local  bash scripts/install-agents.sh
@@ -19,14 +19,14 @@
 #   - DEVIN_CONFIG: target directory (skips the local/global prompt)
 #   - INSTALL_MODE: local or global (skips the prompt)
 #   - REPO_URL:     Git repository URL to clone when running standalone
-#   - REPO_BRANCH:  Git branch to clone when running standalone (default: master)
+#   - REPO_BRANCH:  Git branch to clone when running standalone (default: main)
 
 set -euo pipefail
 
 shopt -s nullglob
 
-REPO_URL="${REPO_URL:-https://github.com/moltra/devin-desktop_automations.git}"
-REPO_BRANCH="${REPO_BRANCH:-master}"
+REPO_URL="${REPO_URL:-https://github.com/moltra/devin-agents.git}"
+REPO_BRANCH="${REPO_BRANCH:-main}"
 TMP_REPO_DIR=""
 
 # Detect global Devin configuration directory.

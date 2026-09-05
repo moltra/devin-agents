@@ -59,28 +59,19 @@ The system uses a hierarchical delegation pattern where a coordinator agent orch
 │   ├── delegation-patterns.md
 │   ├── streamlit-performance.md
 │   └── redis-patterns.md
-├── .agents/                   # Devin skills (tool-agnostic standard)
-│   └── skills/
-│       ├── coordinator/
-│       ├── python-reviewer/
-│       ├── security-auditor/
-│       ├── redis-engineer/
-│       ├── testing-guardian/
-│       ├── streamlit-expert/
-│       ├── git-workflow/
-│       ├── ollama-testing/
-│       ├── quick-review/
-│       └── redis-resilience/
-├── documentation/             # Documentation
-│   ├── agent-architecture.md
-│   ├── CRITICAL_LESSONS.md
-│   ├── DEVELOPMENT_GUIDE.md
-│   └── CREATING_AGENTS.md
+├── plugins/                   # Devin plugin (installable unit)
+│   └── devin-agents/
+│       ├── agents/            # 20 subagent profiles
+│       ├── skills/            # 23 skills
+│       ├── rules/             # 2 triggered rules
+│       └── AGENTS.md          # always-on rule
 ├── scripts/                   # Utility scripts
 │   ├── install-agents.sh
 │   └── validate-agent.sh
+├── agent-architecture.md      # Architecture documentation
 ├── CUSTOMIZATION.md           # How to customize templates
-└── README.md                 # This file
+├── PLAN.md                    # Planning template
+└── README.md                  # This file
 ```
 
 ## Devin Plugin (`plugins/devin-agents/`)
@@ -135,7 +126,7 @@ plugins/devin-agents/
 devin plugins install ./plugins/devin-agents
 
 # Or from any location
-devin plugins install /path/to/devin-desktop_automations/plugins/devin-agents
+devin plugins install /path/to/devin-agents/plugins/devin-agents
 ```
 
 Local installs are linked, so edits to the plugin files apply on the next session
@@ -194,8 +185,8 @@ Usage:
 
 1. **Clone this repository:**
    ```bash
-   git clone https://github.com/moltra/devin-desktop_automations.git
-   cd devin-desktop_automations
+   git clone https://github.com/moltra/devin-agents.git
+   cd devin-agents
    ```
 
 2. **Install templates to your local Devin config:**
@@ -219,17 +210,12 @@ If you prefer manual installation:
 # Copy agent templates
 cp -r templates/* ~/.config/devin/agents/
 
-# Copy skills (using .agents standard for broad compatibility)
-cp -r .agents/skills/* ~/.config/devin/skills/
-
-# Copy legacy skills if present
-cp -r skills/* ~/.config/devin/skills/ 2>/dev/null || true
+# Install the plugin (recommended — includes all agents + skills)
+devin plugins install ./plugins/devin-agents
 
 # Make scripts executable
 chmod +x scripts/*.sh
 ```
-
-**Note:** Skills are stored in `.agents/skills/` following the `.agents` skills standard for broad compatibility with third-party tools. Legacy skills in `skills/` are also supported for backward compatibility.
 
 ## Customization
 
@@ -290,6 +276,7 @@ coordinator → subagent_explore → domain-specialist → python-reviewer → c
 ## Documentation
 
 - [CUSTOMIZATION.md](CUSTOMIZATION.md): How to customize templates for your project
+- [agent-architecture.md](agent-architecture.md): Multi-agent architecture documentation
 - [patterns/coordinator-optimization-patterns.md](patterns/coordinator-optimization-patterns.md): Coordinator behavioral patterns for efficiency
 - [patterns/coordinator-quick-reference.md](patterns/coordinator-quick-reference.md): Quick reference for coordinator behavior
 - [patterns/task-template-patterns.md](patterns/task-template-patterns.md): Task construction templates
@@ -299,9 +286,6 @@ coordinator → subagent_explore → domain-specialist → python-reviewer → c
 - [patterns/delegation-patterns.md](patterns/delegation-patterns.md): Structural delegation patterns
 - [patterns/streamlit-performance.md](patterns/streamlit-performance.md): Streamlit optimization patterns
 - [patterns/redis-patterns.md](patterns/redis-patterns.md): Redis integration patterns
-- [documentation/agent-architecture.md](documentation/agent-architecture.md): Detailed architecture documentation
-- [documentation/CRITICAL_LESSONS.md](documentation/CRITICAL_LESSONS.md): Important lessons learned
-- [documentation/DEVELOPMENT_GUIDE.md](documentation/DEVELOPMENT_GUIDE.md): Development guidelines
 
 ## Contributing
 
@@ -340,6 +324,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Support
 
 For issues or questions:
-1. Check the documentation in the `documentation/` directory
-2. Review [CUSTOMIZATION.md](CUSTOMIZATION.md) for guidance
+1. Review [CUSTOMIZATION.md](CUSTOMIZATION.md) for guidance
+2. Check the [agent-architecture.md](agent-architecture.md) for architecture details
 3. Open an issue on GitHub for template-specific problems
