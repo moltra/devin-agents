@@ -12,7 +12,32 @@ This repository contains **generic agent templates, patterns, and documentation*
 
 ## Architecture
 
-The system uses a hierarchical delegation pattern where a coordinator agent orchestrates specialized sub-agents for specific tasks.
+The system uses a hierarchical delegation pattern where a coordinator agent orchestrates specialized sub-agents for specific tasks. The ecosystem is self-improving via a sensor/actuator loop.
+
+```mermaid
+graph TD
+    USER[User Request] --> GC{global_coordinator}
+    GC -->|Python| PC[python_coordinator]
+    GC -->|Other| COORD[coordinator<br/>generic fallback]
+    GC -->|Planning| PL[planner]
+
+    PC --> IMPL[Implementation Specialists]
+    COORD --> IMPL
+    IMPL --> QUAL[Quality & Safety]
+    QUAL --> GW[git-workflow]
+    GW --> REVIEW[Human Review]
+
+    USER -.->|gap detected| SR[subagent-recommender<br/>sensor]
+    SR -.->|proposes| SC[subagent-curator<br/>actuator]
+    SC -.->|creates/edits| ECOSYSTEM[Agent Ecosystem]
+
+    style GC fill:#ff6b6b,stroke:#c92a2a,stroke-width:2px,color:#fff
+    style SR fill:#e599f7,stroke:#862e9c,stroke-width:2px,color:#fff
+    style SC fill:#e599f7,stroke:#862e9c,stroke-width:2px,color:#fff
+    style REVIEW fill:#fcc419,stroke:#e67700,stroke-width:2px,color:#000
+```
+
+See [agent-architecture.md](agent-architecture.md) for detailed diagrams (delegation flow, verification pipeline, improvement loop) and full agent/skill inventory.
 
 ### Available Templates
 
