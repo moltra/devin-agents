@@ -1,6 +1,6 @@
 ---
 name: api-specialist
-description: API design and implementation: REST endpoints, validation, async patterns, OpenAPI documentation
+description: "API design and implementation: REST endpoints, validation, async patterns, OpenAPI documentation"
 argument-hint: "[files or scope]"
 agent: api-specialist
 triggers:
