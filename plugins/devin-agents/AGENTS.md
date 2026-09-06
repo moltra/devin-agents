@@ -1,6 +1,6 @@
 # devin-agents Plugin — Always-On Rule
 
-This plugin bundles a multi-agent team (22 subagent profiles + 23 skills) for use
+This plugin bundles a multi-agent team (22 subagent profiles + 29 skills) for use
 across Devin CLI and Devin Desktop sessions. It is installed at the user level and
 available in every project.
 

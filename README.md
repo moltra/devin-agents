@@ -111,9 +111,11 @@ project repos into one deduplicated, generic package.
 - **22 custom subagent profiles** (`agents/<name>/AGENT.md`) — coordinators,
   implementation specialists, reviewers, workflow agents, and a meta-agent
   (`subagent-curator`) that maintains the agent ecosystem itself.
-- **23 skills** (`skills/<name>/SKILL.md`) — invokable skills including the
-  `subagent-recommender` (detects coverage gaps and proposes new sub-agents) and
-  `subagent-curator` (reviews, edits, creates, and audits profiles).
+- **29 skills** (`skills/<name>/SKILL.md`) — invokable skills including the
+  `subagent-recommender` (detects coverage gaps and proposes new sub-agents),
+  `subagent-curator` (reviews, edits, creates, and audits profiles), and 6
+  process skills (`grilling`, `tdd`, `diagnosing-bugs`, `code-review`,
+  `codebase-design`, `handoff`) adapted from engineering best practices.
 - **Always-on rule** (`AGENTS.md`) — installs the coordinator-first workflow,
   the auto-recommend guidance, and the continuous improvement loop in every
   session.
@@ -137,9 +139,15 @@ plugins/devin-agents/
 │   ├── coordinator/AGENT.md
 │   ├── subagent-curator/AGENT.md  # meta-agent: reviews/edits/creates profiles
 │   └── … (19 more)
-└── skills/                  # 23 skills
+└── skills/                  # 29 skills
     ├── subagent-recommender/SKILL.md  # detect gaps, propose new sub-agents
     ├── subagent-curator/SKILL.md      # review/edit/create/audit profiles
+    ├── grilling/SKILL.md              # pre-implementation interview
+    ├── tdd/SKILL.md                   # red-green-refactor discipline
+    ├── diagnosing-bugs/SKILL.md       # 6-phase debugging
+    ├── code-review/SKILL.md           # two-axis review (standards + spec)
+    ├── codebase-design/SKILL.md       # deep module design vocabulary
+    ├── handoff/SKILL.md               # session continuity
     ├── coordinator/SKILL.md
     └── … (20 more)
 ```

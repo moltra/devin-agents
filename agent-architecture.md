@@ -217,6 +217,12 @@ flowchart TD
 | | `quick-review` | `/devin-agents:quick-review` | Quick pre-commit review |
 | **Meta** | `subagent-recommender` | `/devin-agents:subagent-recommender` | Detect gaps, propose agents |
 | | `subagent-curator` | `/devin-agents:subagent-curator` | Review/edit/create/audit profiles |
+| **Process** | `grilling` | `/devin-agents:grilling` | Pre-implementation interview |
+| | `tdd` | `/devin-agents:tdd` | Red-green-refactor discipline |
+| | `diagnosing-bugs` | `/devin-agents:diagnosing-bugs` | 6-phase debugging |
+| | `code-review` | `/devin-agents:code-review` | Two-axis review (standards + spec) |
+| | `codebase-design` | `/devin-agents:codebase-design` | Deep module design vocabulary |
+| | `handoff` | `/devin-agents:handoff` | Session continuity |
 
 ## Workflow Patterns
 
