@@ -170,8 +170,100 @@ devin plugins list
 devin plugins info devin-agents
 ```
 
+### Using skills
+
 Skills become available as `/devin-agents:<skill>` slash commands. Subagent
 profiles are available to `run_subagent` by name.
+
+**Process skills** run inline in the current conversation — the skill's
+instructions are injected and the agent follows them directly:
+
+```
+/devin-agents:grilling I want to add a caching layer to the API
+/devin-agents:tdd implement a cache wrapper with TTL support
+/devin-agents:diagnosing-bugs the API returns 500 on large payloads
+/devin-agents:code-review main
+/devin-agents:codebase-design
+/devin-agents:handoff next session should focus on integration tests
+```
+
+**Subagent-tied skills** spawn a specialist subagent with its own context
+window, tools, and model. The parent agent waits for the result and
+summarizes it:
+
+```
+/devin-agents:python-reviewer src/services/
+/devin-agents:security-auditor
+/devin-agents:architecture-reviewer
+/devin-agents:testing-guardian tests/
+```
+
+You can also ask the agent to use a skill in natural language:
+"I want to review this code" → the agent reaches for `/devin-agents:code-review`
+"Debug this issue" → the agent reaches for `/devin-agents:diagnosing-bugs`
+
+### Quick reference
+
+**22 subagent profiles** (invoke by name via `run_subagent`):
+
+| Category | Profile | Focus |
+|----------|---------|-------|
+| Coordinators | `global_coordinator` | Detects language/stack, delegates |
+| | `coordinator` | Generic orchestrator |
+| | `python_coordinator` | Python-specific orchestrator |
+| | `planner` | Spec/PLAN.md production |
+| Implementation | `python-developer` | FastAPI/Flask/Django backend |
+| | `api-specialist` | REST endpoints, OpenAPI |
+| | `streamlit-expert` | Streamlit UI, caching, reruns |
+| | `redis-engineer` | Redis caching, resilience |
+| | `ollama-specialist` | Ollama LLM, streaming |
+| | `devops-docker` | Docker Compose, deployment |
+| Quality | `python-reviewer` | Python code review |
+| | `swe-check` | Non-Python bug detection |
+| | `security-auditor` | Vulnerabilities, secrets |
+| | `testing-guardian` | Test coverage, quality |
+| | `qa-ci-agent` | CI/CD gates, lint, typecheck |
+| | `architecture-reviewer` | Module boundaries, structure |
+| | `best-practices-reviewer` | Cross-language code quality |
+| | `feature-verifier` | Verify features match spec |
+| Workflow | `git-workflow` | Branches, commits, merges |
+| | `documentation-agent` | Docs, README, migration guides |
+| | `playwright-testing` | E2E test creation |
+| Meta | `subagent-curator` | Reviews/edits/creates profiles |
+
+**29 skills** (invoke as `/devin-agents:<skill>`):
+
+| Category | Skill | Description |
+|----------|-------|-------------|
+| Coordinator | `/devin-agents:coordinator` | Pure orchestration |
+| Implementation | `/devin-agents:python-developer` | Python backend |
+| | `/devin-agents:api-specialist` | API design |
+| | `/devin-agents:streamlit-expert` | Streamlit UI |
+| | `/devin-agents:redis-engineer` | Redis caching |
+| | `/devin-agents:ollama-specialist` | Ollama integration |
+| | `/devin-agents:devops-docker` | Docker/DevOps |
+| Quality | `/devin-agents:python-reviewer` | Python review |
+| | `/devin-agents:architecture-reviewer` | Architecture review |
+| | `/devin-agents:security-auditor` | Security audit |
+| | `/devin-agents:testing-guardian` | Test quality |
+| | `/devin-agents:qa-ci-agent` | CI/CD gates |
+| | `/devin-agents:swe-check` | Non-Python bugs |
+| | `/devin-agents:best-practices-reviewer` | Cross-language quality |
+| | `/devin-agents:feature-verifier` | Verify features match spec |
+| Workflow | `/devin-agents:git-workflow` | Git operations |
+| | `/devin-agents:documentation-agent` | Documentation |
+| | `/devin-agents:playwright-testing` | Playwright tests |
+| Audits | `/devin-agents:ollama-testing` | Ollama safety audit |
+| | `/devin-agents:redis-resilience` | Redis resilience audit |
+| | `/devin-agents:quick-review` | Quick pre-commit review |
+| Meta | `/devin-agents:subagent-recommender` | Detect gaps, propose agents |
+| | `/devin-agents:subagent-curator` | Review/edit/create/audit profiles |
+| Process | `/devin-agents:grilling` | Pre-implementation interview |
+| | `/devin-agents:tdd` | Red-green-refactor discipline |
+| | `/devin-agents:diagnosing-bugs` | 6-phase debugging |
+| | `/devin-agents:code-review` | Two-axis review (standards + spec) |
+| | `/devin-agents:codebase-design` | Deep module design vocabulary |
+| | `/devin-agents:handoff` | Session continuity |
 
 ### Automatic sub-agent recommendation
 
