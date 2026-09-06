@@ -1,7 +1,7 @@
 ---
 name: streamlit-expert
 description: Streamlit UI specialist — component architecture, session state, caching, and rerun performance
-model: kimi-k2-7
+model: swe-1-7-medium
 allowed-tools:
   - read
   - grep

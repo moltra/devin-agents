@@ -157,17 +157,17 @@ The pagination bug causes empty task lists when all keys arrive in a single SCAN
 
 ## Skill Locations
 
-Skills are defined in `.agents/skills/<name>/SKILL.md`:
-- `.agents/skills/coordinator/SKILL.md`
-- `.agents/skills/python-reviewer/SKILL.md`
-- `.agents/skills/security-auditor/SKILL.md`
-- `.agents/skills/redis-engineer/SKILL.md`
-- `.agents/skills/testing-guardian/SKILL.md`
-- `.agents/skills/streamlit-expert/SKILL.md`
-- `.agents/skills/git-workflow/SKILL.md`
-- `.agents/skills/ollama-testing/SKILL.md`
-- `.agents/skills/quick-review/SKILL.md`
-- `.agents/skills/redis-resilience/SKILL.md`
+Skills are defined in `plugins/devin-agents/skills/<name>/SKILL.md`:
+- `plugins/devin-agents/skills/coordinator/SKILL.md`
+- `plugins/devin-agents/skills/python-reviewer/SKILL.md`
+- `plugins/devin-agents/skills/security-auditor/SKILL.md`
+- `plugins/devin-agents/skills/redis-engineer/SKILL.md`
+- `plugins/devin-agents/skills/testing-guardian/SKILL.md`
+- `plugins/devin-agents/skills/streamlit-expert/SKILL.md`
+- `plugins/devin-agents/skills/git-workflow/SKILL.md`
+- `plugins/devin-agents/skills/ollama-testing/SKILL.md`
+- `plugins/devin-agents/skills/quick-review/SKILL.md`
+- `plugins/devin-agents/skills/redis-resilience/SKILL.md`
 
 ## Related Documentation
 

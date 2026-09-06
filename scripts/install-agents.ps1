@@ -8,8 +8,8 @@
     Devin config: %APPDATA%\devin). On non-interactive terminals it defaults to
     global.
 
-    Installs agent templates as named AGENT.md profiles and copies skills from both
-    .agents/skills and .devin/skills. Existing files are backed up before overwriting.
+    Installs agent templates as named AGENT.md profiles and copies skills from
+    plugins/devin-agents/skills and .devin/skills. Existing files are backed up before overwriting.
 
     If the script is not run from inside the repository, it clones the repository to
     a temporary directory automatically.
@@ -70,7 +70,7 @@ function Locate-Repo {
     if ($scriptDir) {
         $candidate = Split-Path -Parent $scriptDir
         if ((Test-Path (Join-Path $candidate "templates")) -and
-            (Test-Path (Join-Path (Join-Path $candidate ".agents") "skills"))) {
+            (Test-Path (Join-Path (Join-Path (Join-Path $candidate "plugins") "devin-agents") "skills"))) {
             return $candidate
         }
     }
@@ -199,7 +199,7 @@ function Install-SkillsFrom {
     }
 }
 
-Install-SkillsFrom -SourceDir (Join-Path (Join-Path $repoDir ".agents") "skills")
+Install-SkillsFrom -SourceDir (Join-Path (Join-Path (Join-Path $repoDir "plugins") "devin-agents") "skills")
 Install-SkillsFrom -SourceDir (Join-Path (Join-Path $repoDir ".devin") "skills")
 
 Write-Host "`nInstallation complete."

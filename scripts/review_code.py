@@ -11,7 +11,7 @@ Usage in .pre-commit-config.yaml:
       hooks:
         - id: devin-review
           name: Devin Code Review
-          entry: python3 /home/mark/.config/devin/scripts/review_code.py
+          entry: python3 ~/.config/devin/scripts/review_code.py
           language: system
           pass_filenames: true
           stages: [pre-commit]

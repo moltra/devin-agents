@@ -95,7 +95,7 @@ locate_repo() {
     if [ -n "$script_dir" ] && [ -d "$script_dir" ]; then
         local candidate
         candidate=$(dirname "$script_dir")
-        if [ -d "$candidate/templates" ] && [ -d "$candidate/.agents/skills" ]; then
+        if [ -d "$candidate/templates" ] && [ -d "$candidate/plugins/devin-agents/skills" ]; then
             printf '%s' "$candidate"
             return
         fi
@@ -196,7 +196,7 @@ install_skills_from() {
     done
 }
 
-install_skills_from "$REPO_DIR/.agents/skills"
+install_skills_from "$REPO_DIR/plugins/devin-agents/skills"
 install_skills_from "$REPO_DIR/.devin/skills"
 
 printf '\nInstallation complete.\n'

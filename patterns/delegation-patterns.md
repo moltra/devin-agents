@@ -151,7 +151,7 @@ TASK_TO_SPECIALIST = {
     "test": "testing-guardian",
     "git": "git-workflow",
     "docker": "devops-docker",
-    "video": "video-pipeline-reviewer"
+    "custom": "<your-specialist>"
 }
 
 def select_specialist(task_type):

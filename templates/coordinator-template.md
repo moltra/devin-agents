@@ -1,7 +1,7 @@
 ---
 name: coordinator
 description: Lead orchestrator that breaks down complex tasks and delegates to specialist subagents
-model: glm-5-2-high
+model: swe-1-7-high
 allowed-tools:
   - read
   - grep
@@ -48,8 +48,6 @@ Delegate to the most appropriate profile for each subtask:
   validation, async patterns, OpenAPI documentation
 - **devops-docker** — DevOps and Docker: container orchestration,
   Docker Compose, deployment configs, container health
-- **video-pipeline-reviewer** — Video generation pipeline: FFmpeg, audio
-  sync, subtitles, clip relevance, quality grading
 
 ## Workflow
 
@@ -150,7 +148,7 @@ Your own telemetry record should include a `subagent_ledger` field listing the t
 
 ## Skills Integration
 
-This coordinator template is designed to work with Devin skills for efficient specialist invocation. Skills are available in `.agents/skills/` and `.devin/skills/` and can be invoked via slash commands or by the coordinator. See `patterns/skills-integration-patterns.md` for detailed skills integration guide and `patterns/skills-quick-reference.md` for quick reference.
+This coordinator template is designed to work with Devin skills for efficient specialist invocation. Skills are available in `plugins/devin-agents/skills/` and `.devin/skills/` and can be invoked via slash commands or by the coordinator. See `patterns/skills-integration-patterns.md` for detailed skills integration guide and `patterns/skills-quick-reference.md` for quick reference.
 
 ## Customization Notes
 

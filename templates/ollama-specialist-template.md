@@ -1,7 +1,7 @@
 ---
 name: ollama-specialist
 description: Ollama LLM integration specialist — local inference, streaming, structured outputs, and async patterns
-model: kimi-k2-7
+model: swe-1-7-medium
 allowed-tools:
   - read
   - grep
@@ -18,7 +18,7 @@ permissions:
     - Exec(git log*)
     - Exec(git show*)
     - Exec(git status*)
-    - Exec(curl http://localhost:11434/*)
+    - Exec(curl http://localhost:*)
     - Exec(docker logs ollama*)
     - Exec(docker exec ollama*)
 ---

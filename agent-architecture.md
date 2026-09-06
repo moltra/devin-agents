@@ -86,6 +86,8 @@ graph TD
     class SR,SC meta
 ```
 
+The plugin provides 22 subagent profiles and 29 skills, organized into coordinators, implementation specialists, quality reviewers, workflow agents, and process skills.
+
 ## Delegation Flow
 
 ```mermaid

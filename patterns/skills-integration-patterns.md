@@ -192,7 +192,7 @@ This references the `agents/coordinator/AGENT.md` profile which includes:
 
 ### Skill Location
 
-Skills are stored in `.agents/skills/<name>/SKILL.md` for broad compatibility with the `.agents` skills standard. This location:
+Skills are stored in `plugins/devin-agents/skills/<name>/SKILL.md` for broad compatibility with the `.agents` skills standard. This location:
 - Follows the `.agents` skills standards
 - Is supported by third-party skill installation tools
 - Is tool-agnostic (not specific to Devin or Windsurf)
@@ -246,7 +246,7 @@ Skills implement the structural patterns from `patterns/delegation-patterns.md`:
 
 To add a new specialist skill:
 
-1. Create `.agents/skills/<specialist-name>/SKILL.md`
+1. Create `plugins/devin-agents/skills/<specialist-name>/SKILL.md`
 2. Add the skill to the coordinator's specialist list in `templates/coordinator-template.md`
 3. Add skill-specific patterns to the appropriate patterns document
 4. Update this documentation
@@ -282,7 +282,7 @@ $ARGUMENTS
 To modify coordinator behavior:
 1. Edit `templates/coordinator-template.md` for system prompt changes
 2. Edit `patterns/coordinator-optimization-patterns.md` for behavioral changes
-3. Edit `.agents/skills/coordinator/SKILL.md` for skill-level changes
+3. Edit `plugins/devin-agents/skills/coordinator/SKILL.md` for skill-level changes
 
 ## Skill vs. Direct Subagent
 
@@ -309,7 +309,7 @@ To modify coordinator behavior:
 ## Troubleshooting
 
 ### Skill Not Found
-Ensure skill files are in `.agents/skills/<name>/SKILL.md` and the directory name matches the skill name.
+Ensure skill files are in `plugins/devin-agents/skills/<name>/SKILL.md` and the directory name matches the skill name.
 
 ### Coordinator Not Working
 Verify that `agents/coordinator/AGENT.md` exists and is properly configured with the coordinator template.

@@ -63,7 +63,7 @@ Add project-specific information to agent templates:
 ## Project-Specific File Structure
 - `app/controllers/` - Your API endpoints
 - `app/services/` - Your business logic
-- `webui/` - Your Streamlit application
+- `frontend/` - Your Streamlit application
 - `internal/` - Your internal utilities
 ```
 
@@ -99,7 +99,7 @@ permissions:
   allow:
     - Read(/path/to/your/project/**)
     - Write(/path/to/your/project/app/**)
-    - Edit(/path/to/your/project/webui/**)
+    - Edit(/path/to/your/project/frontend/**)
 ```
 
 ### 3. Model Selection
@@ -111,15 +111,15 @@ Choose appropriate models for your use case:
 **Generic Template:**
 ```yaml
 ---
-model: glm-5-2-high
+model: swe-1-7-high
 ```
 
 **Customized for Your Project:**
 ```yaml
 ---
-model: glm-5-2-high  # For complex tasks
+model: swe-1-7-high  # For complex tasks
 # or
-model: kimi-k2-7    # For focused tasks
+model: swe-1-7-medium  # For focused tasks
 ```
 
 ### 4. Project-Specific Patterns
