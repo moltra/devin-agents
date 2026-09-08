@@ -1,7 +1,7 @@
 ---
 name: api-specialist
 description: API design and implementation specialist — REST endpoints, validation, async patterns, and OpenAPI documentation
-model: swe-1-7-medium
+# model: <omit to inherit the default subagent model; set to override>
 allowed-tools:
   - read
   - grep

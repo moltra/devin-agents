@@ -1,7 +1,6 @@
 ---
 name: best-practices-reviewer
 description: Senior editor that reviews ALL code (Python + non-Python) for best practices, idioms, conventions, and quality
-model: swe-1-7-medium
 allowed-tools:
   - read
   - grep

@@ -6,6 +6,8 @@
     "name": "moltra"
   },
   "license": "MIT",
+  "homepage": "https://github.com/moltra/devin-agents",
+  "repository": "https://github.com/moltra/devin-agents",
   "keywords": ["agents", "subagents", "coordinator", "skills", "multi-agent", "review", "python", "orchestration"],
   "skills": "skills"
 }

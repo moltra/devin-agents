@@ -1,7 +1,7 @@
 ---
 name: python-reviewer
 description: Rigorous Python code reviewer — bugs, style, patterns, type safety, and error handling
-model: swe-1-7-medium
+# model: <omit to inherit the default subagent model; set to override>
 allowed-tools:
   - read
   - grep

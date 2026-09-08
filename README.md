@@ -442,6 +442,22 @@ This repository contains **only generic templates and patterns**.
 
 Keep your project-specific customizations in your local `~/.config/devin/agents/` directory - these should never be committed to this repository.
 
+## Feedback
+
+Found a bug, have a feature request, or want to suggest a new agent profile?
+
+[Open an issue on GitHub](https://github.com/moltra/devin-agents/issues/new/choose)
+
+- **Bug reports** — describe what happened, what you expected, and how to reproduce
+- **Feature requests** — describe the use case and what agent/skill would help
+- **Agent proposals** — use the subagent-recommender skill, then share your proposal in an issue for inclusion in the plugin
+- **General feedback** — all feedback welcome
+
+Please include:
+- Your Devin CLI version (`devin --version`)
+- The plugin version (`devin plugins info devin-agents`)
+- Steps to reproduce (for bugs)
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

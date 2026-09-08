@@ -1,7 +1,7 @@
 ---
 name: coordinator
 description: Lead orchestrator that breaks down complex tasks and delegates to specialist subagents
-model: swe-1-7-high
+# model: <omit to inherit the default subagent model; set to override>
 allowed-tools:
   - read
   - grep
@@ -159,5 +159,5 @@ When customizing this template for your project:
 3. **Add project-specific workflow patterns** in the Workflow section
 4. **Include project-specific coordination patterns** if needed
 5. **Add project-specific specialist descriptions** for your custom agents
-6. **Update model assignments** based on your available models
+6. **Optionally set a model** per agent via `model:` in AGENT.md to override the default subagent model
 7. **Add project-specific escalation procedures** for your team structure

@@ -1,7 +1,6 @@
 ---
 name: documentation-agent
 description: Documentation specialist — README, API docs, architecture docs, migration guides, and examples
-model: swe-1-7-medium
 allowed-tools:
   - read
   - grep

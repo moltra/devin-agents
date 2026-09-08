@@ -1,7 +1,6 @@
 ---
 name: global_coordinator
 description: Top-level coordinator that detects the project language/stack and delegates to the appropriate language-specific coordinator (python_coordinator, etc.). Falls back to the generic coordinator for unsupported languages.
-model: swe-1-7-medium
 allowed-tools:
   - read
   - grep

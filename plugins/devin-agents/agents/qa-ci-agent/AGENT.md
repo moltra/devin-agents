@@ -1,7 +1,6 @@
 ---
 name: qa-ci-agent
 description: CI/CD quality gate enforcement — linting, type checking, test orchestration, and workflow validation
-model: swe-1-7-medium
 allowed-tools:
   - read
   - grep

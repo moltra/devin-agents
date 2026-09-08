@@ -1,7 +1,6 @@
 ---
 name: subagent-recommender
 description: Detects when a new sub-agent profile would help and proposes a complete AGENT.md (and optional SKILL.md) definition for approval. Use when the agent sees repeated/unscoped work, a gap in specialist coverage, or the user asks for a new specialist.
-model: swe-1-7-medium
 allowed-tools:
   - read
   - grep
@@ -52,7 +51,7 @@ Produce a complete `AGENT.md` using the standard frontmatter format:
 ---
 name: <kebab-case-name>
 description: <one-line description shown to the parent agent when selecting a profile>
-model: <swe-1-7-medium | swe-1-7-high | sonnet | haiku | default>
+# model: <omit to inherit default; or set to swe, sonnet, haiku, etc.>
 allowed-tools:
   - read
   - grep
@@ -70,10 +69,10 @@ permissions:
 Guidelines:
 - **Name**: kebab-case, descriptive, must not collide with built-in
   (`subagent_explore`, `subagent_general`) or existing custom profiles.
-- **Model**: pick the cheapest model that can do the job. Use
-  `swe-1-7-medium` for read-only/review work, `swe-1-7-high` for implementation,
-  `sonnet` only when reasoning quality is critical. Never inherit the parent's
-  premium model for a narrow specialist.
+- **Model**: omit `model:` to inherit the default subagent model. Only set
+  `model:` explicitly when an agent genuinely needs a different model (e.g.,
+  `sonnet` for critical reasoning, `haiku` for lightweight tasks). Valid
+  values include: `swe`, `opus`, `sonnet`, `haiku`, `codex`, `gemini`, `gpt`.
 - **allowed-tools**: grant the minimum set. Reviewers rarely need `write`/`edit`.
   Explorers never need them. `ask_user_question` is always withheld from
   subagents — do not list it.
@@ -92,7 +91,7 @@ can trigger it explicitly with `/<plugin>:<skill>`), also draft a `SKILL.md`:
 ---
 name: <same name>
 description: <when to invoke this skill>
-model: <same model guidance>
+# model: <omit to inherit default; or set to swe, sonnet, haiku, etc.>
 allowed-tools:
   - <minimum set>
 ---
@@ -138,3 +137,4 @@ Only after the user approves:
 - **Do not grant broad tool access.** Narrow specialists stay cheap and safe.
 - **Do not create files without approval.** Always propose first.
 - **Do not pin an expensive model** unless the work genuinely requires it.
+  Prefer omitting `model:` to inherit the default subagent model.

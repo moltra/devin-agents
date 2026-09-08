@@ -1,7 +1,6 @@
 ---
 name: feature-verifier
 description: Verifies that implemented features actually match the original request/spec and work as requested
-model: swe-1-7-medium
 allowed-tools:
   - read
   - grep

@@ -1,7 +1,6 @@
 ---
 name: architecture-reviewer
 description: Repository architecture reviewer — module boundaries, dependency graph, structural consistency
-model: swe-1-7-medium
 allowed-tools:
   - read
   - grep

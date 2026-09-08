@@ -1,7 +1,6 @@
 ---
 name: devops-docker
 description: DevOps and Docker specialist — container orchestration, Docker Compose, deployment configs, and container health
-model: swe-1-7-medium
 allowed-tools:
   - read
   - grep

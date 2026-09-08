@@ -1,7 +1,7 @@
 ---
 name: redis-engineer
 description: Redis data engineer — caching layers, serialization, connection resilience, and fallback strategies
-model: swe-1-7-medium
+# model: <omit to inherit the default subagent model; set to override>
 allowed-tools:
   - read
   - grep

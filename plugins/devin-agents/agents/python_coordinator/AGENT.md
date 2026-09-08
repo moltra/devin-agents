@@ -1,7 +1,6 @@
 ---
 name: python_coordinator
 description: Language-specific coordinator for Python projects. Orchestrates Python specialists and delegates implementation, review, and verification.
-model: swe-1-7-medium
 allowed-tools:
   - read
   - grep

@@ -1,7 +1,7 @@
 ---
 name: testing-guardian
 description: Test quality and coverage specialist — ensures tests are meaningful, isolated, and cover edge cases
-model: swe-1-7-medium
+# model: <omit to inherit the default subagent model; set to override>
 allowed-tools:
   - read
   - grep

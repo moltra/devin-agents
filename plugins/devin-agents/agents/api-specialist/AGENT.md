@@ -1,7 +1,6 @@
 ---
 name: api-specialist
 description: API design and implementation specialist — REST endpoints, validation, async patterns, and OpenAPI documentation
-model: swe-1-7-medium
 allowed-tools:
   - read
   - grep

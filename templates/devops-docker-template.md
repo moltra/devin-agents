@@ -1,7 +1,7 @@
 ---
 name: devops-docker
 description: DevOps and Docker specialist — container orchestration, Docker Compose, deployment configs, and container health
-model: swe-1-7-medium
+# model: <omit to inherit the default subagent model; set to override>
 allowed-tools:
   - read
   - grep

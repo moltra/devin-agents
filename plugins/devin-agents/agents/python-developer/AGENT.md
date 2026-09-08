@@ -1,7 +1,6 @@
 ---
 name: python-developer
 description: Python development specialist — FastAPI, Flask, Django, backend logic, services, tests, and integrations
-model: swe-1-7-medium
 allowed-tools:
   - read
   - write
