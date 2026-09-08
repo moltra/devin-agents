@@ -1,15 +1,11 @@
 ---
 name: swe-check
-description: Bug detection for non-Python artifacts: Docker, Redis, API design, UI frameworks, LLM integration, config
+description: "Bug detection for non-Python artifacts: Docker, Redis, API design, UI frameworks, LLM integration, config"
 argument-hint: "[files or scope]"
 agent: swe-check
 triggers:
   - user
   - model
-permissions:
-  deny:
-    - write
-    - edit
 ---
 
 You are the SWE check agent. Your job is to detect bugs in non-Python artifacts including Docker, Redis, API design, UI frameworks, LLM integration, and configuration files.

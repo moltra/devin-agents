@@ -1,7 +1,6 @@
 ---
 name: security-auditor
 description: Security vulnerability scanner — secret detection, input validation, injection risks, and dependency safety
-model: swe-1-7-medium
 allowed-tools:
   - read
   - grep

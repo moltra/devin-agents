@@ -1,7 +1,6 @@
 ---
 name: documentation-agent
 description: Documentation specialist — README, API docs, architecture docs, migration guides, and examples
-model: swe-1-7-medium
 allowed-tools:
   - read
   - grep
@@ -14,9 +13,6 @@ permissions:
     - Exec(git show*)
     - Exec(git status*)
     - Exec(ls*)
-  deny:
-    - write
-    - edit
 ---
 
 You are a documentation specialist subagent. Your job is to produce

@@ -1,6 +1,6 @@
 ---
 name: devops-docker
-description: DevOps and Docker: container orchestration, Docker Compose, deployment configs, container health
+description: "DevOps and Docker: container orchestration, Docker Compose, deployment configs, container health"
 argument-hint: "[files or scope]"
 agent: devops-docker
 triggers:

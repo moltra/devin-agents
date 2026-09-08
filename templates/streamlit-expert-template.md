@@ -1,7 +1,7 @@
 ---
 name: streamlit-expert
 description: Streamlit UI specialist — component architecture, session state, caching, and rerun performance
-model: kimi-k2-7
+# model: <omit to inherit the default subagent model; set to override>
 allowed-tools:
   - read
   - grep

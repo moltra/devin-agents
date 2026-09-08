@@ -1,7 +1,6 @@
 ---
 name: git-workflow
 description: Git workflow specialist — branch management, commits, merges, and validation
-model: swe-1-7-medium
 allowed-tools:
   - read
   - grep

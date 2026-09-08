@@ -30,6 +30,64 @@ Edit the agent files in `~/.config/devin/agents/` to add your project-specific k
 bash scripts/validate-agent.sh ~/.config/devin/agents/
 ```
 
+## Disabling Individual Agents
+
+Not every project needs every agent profile that the plugin ships. You can
+disable individual agents without uninstalling the entire plugin using any of
+the methods below.
+
+### Method 1: Project-level override
+
+Create a `.devin/agents/<name>/AGENT.md` file in your project that overrides
+the plugin's agent. To disable an agent, create a minimal profile that does
+nothing:
+
+```markdown
+---
+name: <agent-name>
+description: Disabled
+---
+This profile is disabled.
+```
+
+### Method 2: Remove from plugin (if installed locally)
+
+If you installed the plugin from a local folder, you can delete or rename the
+agent's directory:
+
+```bash
+# Disable the ollama-specialist agent
+mv ~/.config/devin/plugins/devin-agents/agents/ollama-specialist ~/.config/devin/plugins/devin-agents/agents/ollama-specialist.disabled
+```
+
+Changes apply on the next session.
+
+### Method 3: Fork the plugin
+
+For permanent changes, fork the plugin repo and remove the agent directories
+you don't need. This is the cleanest approach for teams.
+
+### Method 4: Disable all subagents
+
+To disable ALL subagents (not just plugin ones), set in
+`~/.config/devin/config.json`:
+
+```json
+{
+  "subagents_enabled": false
+}
+```
+
+This removes the `run_subagent` and `read_subagent` tools entirely.
+
+### Note on skills
+
+Disabling agents does NOT affect skills. Skills are invoked explicitly via
+`/<plugin>:<skill>` commands and will still work even if their matching agent
+is disabled. However, skills that use `agent: <name>` to run as a subagent
+will fall back to the default subagent profile if the named agent is not
+available.
+
 ## Customization Areas
 
 ### 1. Project Knowledge
@@ -63,7 +121,7 @@ Add project-specific information to agent templates:
 ## Project-Specific File Structure
 - `app/controllers/` - Your API endpoints
 - `app/services/` - Your business logic
-- `webui/` - Your Streamlit application
+- `frontend/` - Your Streamlit application
 - `internal/` - Your internal utilities
 ```
 
@@ -99,27 +157,34 @@ permissions:
   allow:
     - Read(/path/to/your/project/**)
     - Write(/path/to/your/project/app/**)
-    - Edit(/path/to/your/project/webui/**)
+    - Edit(/path/to/your/project/frontend/**)
 ```
 
 ### 3. Model Selection
 
-Choose appropriate models for your use case:
+Agent profiles do **not** pin a `model:` field by default. Instead, they
+inherit the **default subagent model**, which admins can configure centrally
+via org/enterprise settings. This keeps model choices consistent across all
+agents and lets you upgrade models in one place.
+
+To override the default for a specific agent, add a `model:` line to that
+agent's `AGENT.md` frontmatter. Valid values include: `swe`, `opus`, `sonnet`,
+`haiku`, `codex`, `gemini`, `gpt`.
 
 #### Example: Model Configuration
 
-**Generic Template:**
+**Generic Template (inherits default):**
 ```yaml
 ---
-model: glm-5-2-high
+# model: <omit to inherit the default subagent model; set to override>
 ```
 
-**Customized for Your Project:**
+**Customized for Your Project (override for one agent):**
 ```yaml
 ---
-model: glm-5-2-high  # For complex tasks
+model: swe  # Override the default for this agent only
 # or
-model: kimi-k2-7    # For focused tasks
+model: sonnet  # Use a higher-reasoning model for this agent only
 ```
 
 ### 4. Project-Specific Patterns
@@ -360,6 +425,169 @@ git diff HEAD~1
 4. **Test thoroughly** - Validate customized agents before use
 5. **Version control locally** - Track your customizations separately
 6. **Share improvements** - Contribute generic improvements back to the shared repository
+
+## Manually Creating Sub-Agents
+
+This section explains how to add your own custom subagent profiles, either with
+the bundled scaffold script or by hand.
+
+### 1. Using the scaffold script
+
+The repository ships with `scripts/create-agent.sh`, which scaffolds a new
+subagent profile from a template. The script:
+
+- Takes the agent name as a required argument (kebab-case).
+- Accepts an optional description with `-d`.
+- Accepts an optional target directory with `-t` (default: `.devin/agents/` for
+  project-level agents).
+- Optionally creates a matching `SKILL.md` with `-s`.
+- Shows help with `-h`.
+
+```bash
+# Project-level agent with a description and a matching skill
+./scripts/create-agent.sh my-reviewer -d "Reviews code for issues" -s
+
+# Global agent installed to the user Devin config
+./scripts/create-agent.sh data-analyst -d "Analyzes data patterns" -t ~/.config/devin/agents/
+```
+
+The generated `AGENT.md` contains YAML frontmatter (`name`, `description`,
+`allowed-tools`) and a system prompt with the sections described below. It does
+**not** include a `model:` field, so the agent inherits the default subagent
+model. Edit the placeholder text in each section to tailor the agent to your
+needs.
+
+### 2. Manual creation
+
+If you prefer to create the profile by hand, follow these steps.
+
+#### Choose a location
+
+Decide where the agent should live:
+
+- **Project-level:** `.devin/agents/<name>/AGENT.md` — scoped to the current
+  repository and version-controlled alongside the project.
+- **Global:** `~/.config/devin/agents/<name>/AGENT.md` — available across all
+  projects for the current user.
+
+#### Create the directory and AGENT.md file
+
+```bash
+# Project-level
+mkdir -p .devin/agents/my-reviewer
+touch .devin/agents/my-reviewer/AGENT.md
+
+# Global
+mkdir -p ~/.config/devin/agents/my-reviewer
+touch ~/.config/devin/agents/my-reviewer/AGENT.md
+```
+
+#### Required frontmatter fields
+
+Every `AGENT.md` starts with YAML frontmatter. The required fields are:
+
+- `name` — the agent identifier in kebab-case.
+- `description` — a short summary of what the agent does.
+- `allowed-tools` — the list of tools the agent may use. Common values:
+  `read`, `grep`, `glob`, `exec`, `edit`, `write`.
+
+```yaml
+---
+name: my-reviewer
+description: Reviews code for issues
+allowed-tools:
+  - read
+  - grep
+  - glob
+  - exec
+---
+```
+
+#### Optional fields
+
+- `model` — omit to inherit the default subagent model (recommended). Set to
+  `swe`, `opus`, `sonnet`, `haiku`, `codex`, `gemini`, or `gpt` to override for
+  this agent only. See the [Model Selection](#3-model-selection) section above
+  for details.
+- `max-nesting` — include only if this agent needs to spawn its own subagents.
+  Omit it for leaf agents that do not delegate further.
+
+#### System prompt structure
+
+The body of `AGENT.md` is the system prompt. Use these sections to keep prompts
+focused and consistent across agents:
+
+```markdown
+# My Reviewer
+
+## Role
+<Describe the specialist's role>
+
+## Scope
+<What files/domains this agent works on>
+
+## What it does
+<Specific tasks this agent handles>
+
+## What it must NOT do
+<Boundaries to prevent scope creep>
+
+## Reporting format
+<How this agent reports results back to the parent>
+```
+
+#### Optionally create a matching SKILL.md
+
+If the agent should be invokable as a skill, create a `SKILL.md` alongside it
+(or in the plugin's `skills/` directory, or the project's `.devin/skills/`
+directory):
+
+```markdown
+---
+name: my-reviewer
+description: Reviews code for issues
+triggers:
+  - user
+  - model
+---
+
+# My Reviewer Skill
+
+<Instructions for the agent when this skill is invoked>
+```
+
+### 3. Validating the profile
+
+After creating the agent, confirm it loads correctly:
+
+```bash
+# Verify the plugin picks up the new agent
+devin plugins info devin-agents
+```
+
+Alternatively, start a new Devin session and check whether the agent appears in
+the available profiles. You can also run the validation script against the
+target directory:
+
+```bash
+bash scripts/validate-agent.sh .devin/agents/
+```
+
+### 4. Best practices
+
+- **Minimum-access principle:** Grant only the tools and file access the agent
+  needs. Start with `read`, `grep`, `glob`, and `exec`, then add more only when
+  required.
+- **Use kebab-case names:** Agent names must be lowercase with hyphens
+  (for example, `my-reviewer`, not `MyReviewer`).
+- **Avoid conflicts with built-in profiles:** Do not reuse the built-in profile
+  names `subagent_explore` or `subagent_general`.
+- **Keep system prompts focused:** Each agent should have one clear
+  responsibility. Use the Role and Scope sections to bound what the agent does,
+  and the "What it must NOT do" section to prevent scope creep.
+- **Inherit the default model:** Omit `model:` unless the agent has a specific
+  reason to use a different model. This keeps model choices consistent and
+  easy to upgrade centrally.
 
 ## Support
 

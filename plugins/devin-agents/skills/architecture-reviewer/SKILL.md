@@ -6,10 +6,6 @@ agent: architecture-reviewer
 triggers:
   - user
   - model
-permissions:
-  deny:
-    - write
-    - edit
 ---
 
 You are the architecture reviewer. Your job is to ensure the repository follows clean architecture principles.
@@ -63,7 +59,7 @@ $ARGUMENTS
 
 If no scope is provided, review:
 - Source directories (`app/`, `src/`, etc.)
-- UI directories (`ui/`, `webui/`, etc.)
+- UI directories (`ui/`, `frontend/`, etc.)
 - Config files (`.env.example`, `*.toml`, `*.yaml`, `*.json`)
 - `docker-compose.yml`
 - `CONVENTIONS.md` (if present)

@@ -1,7 +1,6 @@
 ---
 name: coordinator
 description: Lead orchestrator that breaks down complex tasks and delegates to specialist subagents
-model: swe-1-7-medium
 allowed-tools:
   - read
   - grep

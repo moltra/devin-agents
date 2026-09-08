@@ -6,10 +6,6 @@ A comprehensive collection of **generic agent templates and patterns** for Devin
 
 This repository contains **generic agent templates, patterns, and documentation** that can be customized for any project. The templates are designed to be copied to your local Devin configuration and then adapted to your specific needs.
 
-### Current Setup
-
-**Moltra is currently using the setup in the `Current_setup_in_use_by Moltra/` folder.** This folder contains the active configuration and customizations being used in production.
-
 ## Architecture
 
 The system uses a hierarchical delegation pattern where a coordinator agent orchestrates specialized sub-agents for specific tasks. The ecosystem is self-improving via a sensor/actuator loop.
@@ -86,8 +82,8 @@ See [agent-architecture.md](agent-architecture.md) for detailed diagrams (delega
 │   └── redis-patterns.md
 ├── plugins/                   # Devin plugin (installable unit)
 │   └── devin-agents/
-│       ├── agents/            # 20 subagent profiles
-│       ├── skills/            # 23 skills
+│       ├── agents/            # 22 subagent profiles
+│       ├── skills/            # 29 skills
 │       ├── rules/             # 2 triggered rules
 │       └── AGENTS.md          # always-on rule
 ├── scripts/                   # Utility scripts
@@ -111,9 +107,11 @@ project repos into one deduplicated, generic package.
 - **22 custom subagent profiles** (`agents/<name>/AGENT.md`) — coordinators,
   implementation specialists, reviewers, workflow agents, and a meta-agent
   (`subagent-curator`) that maintains the agent ecosystem itself.
-- **23 skills** (`skills/<name>/SKILL.md`) — invokable skills including the
-  `subagent-recommender` (detects coverage gaps and proposes new sub-agents) and
-  `subagent-curator` (reviews, edits, creates, and audits profiles).
+- **29 skills** (`skills/<name>/SKILL.md`) — invokable skills including the
+  `subagent-recommender` (detects coverage gaps and proposes new sub-agents),
+  `subagent-curator` (reviews, edits, creates, and audits profiles), and 6
+  process skills (`grilling`, `tdd`, `diagnosing-bugs`, `code-review`,
+  `codebase-design`, `handoff`) adapted from engineering best practices.
 - **Always-on rule** (`AGENTS.md`) — installs the coordinator-first workflow,
   the auto-recommend guidance, and the continuous improvement loop in every
   session.
@@ -137,9 +135,15 @@ plugins/devin-agents/
 │   ├── coordinator/AGENT.md
 │   ├── subagent-curator/AGENT.md  # meta-agent: reviews/edits/creates profiles
 │   └── … (19 more)
-└── skills/                  # 23 skills
+└── skills/                  # 29 skills
     ├── subagent-recommender/SKILL.md  # detect gaps, propose new sub-agents
     ├── subagent-curator/SKILL.md      # review/edit/create/audit profiles
+    ├── grilling/SKILL.md              # pre-implementation interview
+    ├── tdd/SKILL.md                   # red-green-refactor discipline
+    ├── diagnosing-bugs/SKILL.md       # 6-phase debugging
+    ├── code-review/SKILL.md           # two-axis review (standards + spec)
+    ├── codebase-design/SKILL.md       # deep module design vocabulary
+    ├── handoff/SKILL.md               # session continuity
     ├── coordinator/SKILL.md
     └── … (20 more)
 ```
@@ -162,8 +166,100 @@ devin plugins list
 devin plugins info devin-agents
 ```
 
+### Using skills
+
 Skills become available as `/devin-agents:<skill>` slash commands. Subagent
 profiles are available to `run_subagent` by name.
+
+**Process skills** run inline in the current conversation — the skill's
+instructions are injected and the agent follows them directly:
+
+```
+/devin-agents:grilling I want to add a caching layer to the API
+/devin-agents:tdd implement a cache wrapper with TTL support
+/devin-agents:diagnosing-bugs the API returns 500 on large payloads
+/devin-agents:code-review main
+/devin-agents:codebase-design
+/devin-agents:handoff next session should focus on integration tests
+```
+
+**Subagent-tied skills** spawn a specialist subagent with its own context
+window, tools, and model. The parent agent waits for the result and
+summarizes it:
+
+```
+/devin-agents:python-reviewer src/services/
+/devin-agents:security-auditor
+/devin-agents:architecture-reviewer
+/devin-agents:testing-guardian tests/
+```
+
+You can also ask the agent to use a skill in natural language:
+"I want to review this code" → the agent reaches for `/devin-agents:code-review`
+"Debug this issue" → the agent reaches for `/devin-agents:diagnosing-bugs`
+
+### Quick reference
+
+**22 subagent profiles** (invoke by name via `run_subagent`):
+
+| Category | Profile | Focus |
+|----------|---------|-------|
+| Coordinators | `global_coordinator` | Detects language/stack, delegates |
+| | `coordinator` | Generic orchestrator |
+| | `python_coordinator` | Python-specific orchestrator |
+| | `planner` | Spec/PLAN.md production |
+| Implementation | `python-developer` | FastAPI/Flask/Django backend |
+| | `api-specialist` | REST endpoints, OpenAPI |
+| | `streamlit-expert` | Streamlit UI, caching, reruns |
+| | `redis-engineer` | Redis caching, resilience |
+| | `ollama-specialist` | Ollama LLM, streaming |
+| | `devops-docker` | Docker Compose, deployment |
+| Quality | `python-reviewer` | Python code review |
+| | `swe-check` | Non-Python bug detection |
+| | `security-auditor` | Vulnerabilities, secrets |
+| | `testing-guardian` | Test coverage, quality |
+| | `qa-ci-agent` | CI/CD gates, lint, typecheck |
+| | `architecture-reviewer` | Module boundaries, structure |
+| | `best-practices-reviewer` | Cross-language code quality |
+| | `feature-verifier` | Verify features match spec |
+| Workflow | `git-workflow` | Branches, commits, merges |
+| | `documentation-agent` | Docs, README, migration guides |
+| | `playwright-testing` | E2E test creation |
+| Meta | `subagent-curator` | Reviews/edits/creates profiles |
+
+**29 skills** (invoke as `/devin-agents:<skill>`):
+
+| Category | Skill | Description |
+|----------|-------|-------------|
+| Coordinator | `/devin-agents:coordinator` | Pure orchestration |
+| Implementation | `/devin-agents:python-developer` | Python backend |
+| | `/devin-agents:api-specialist` | API design |
+| | `/devin-agents:streamlit-expert` | Streamlit UI |
+| | `/devin-agents:redis-engineer` | Redis caching |
+| | `/devin-agents:ollama-specialist` | Ollama integration |
+| | `/devin-agents:devops-docker` | Docker/DevOps |
+| Quality | `/devin-agents:python-reviewer` | Python review |
+| | `/devin-agents:architecture-reviewer` | Architecture review |
+| | `/devin-agents:security-auditor` | Security audit |
+| | `/devin-agents:testing-guardian` | Test quality |
+| | `/devin-agents:qa-ci-agent` | CI/CD gates |
+| | `/devin-agents:swe-check` | Non-Python bugs |
+| | `/devin-agents:best-practices-reviewer` | Cross-language quality |
+| | `/devin-agents:feature-verifier` | Verify features match spec |
+| Workflow | `/devin-agents:git-workflow` | Git operations |
+| | `/devin-agents:documentation-agent` | Documentation |
+| | `/devin-agents:playwright-testing` | Playwright tests |
+| Audits | `/devin-agents:ollama-testing` | Ollama safety audit |
+| | `/devin-agents:redis-resilience` | Redis resilience audit |
+| | `/devin-agents:quick-review` | Quick pre-commit review |
+| Meta | `/devin-agents:subagent-recommender` | Detect gaps, propose agents |
+| | `/devin-agents:subagent-curator` | Review/edit/create/audit profiles |
+| Process | `/devin-agents:grilling` | Pre-implementation interview |
+| | `/devin-agents:tdd` | Red-green-refactor discipline |
+| | `/devin-agents:diagnosing-bugs` | 6-phase debugging |
+| | `/devin-agents:code-review` | Two-axis review (standards + spec) |
+| | `/devin-agents:codebase-design` | Deep module design vocabulary |
+| | `/devin-agents:handoff` | Session continuity |
 
 ### Automatic sub-agent recommendation
 
@@ -341,6 +437,22 @@ This repository contains **only generic templates and patterns**.
 - Custom agent implementations
 
 Keep your project-specific customizations in your local `~/.config/devin/agents/` directory - these should never be committed to this repository.
+
+## Feedback
+
+Found a bug, have a feature request, or want to suggest a new agent profile?
+
+[Open an issue on GitHub](https://github.com/moltra/devin-agents/issues/new/choose)
+
+- **Bug reports** — describe what happened, what you expected, and how to reproduce
+- **Feature requests** — describe the use case and what agent/skill would help
+- **Agent proposals** — use the subagent-recommender skill, then share your proposal in an issue for inclusion in the plugin
+- **General feedback** — all feedback welcome
+
+Please include:
+- Your Devin CLI version (`devin --version`)
+- The plugin version (`devin plugins info devin-agents`)
+- Steps to reproduce (for bugs)
 
 ## License
 

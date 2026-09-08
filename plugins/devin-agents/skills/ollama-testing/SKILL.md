@@ -17,7 +17,7 @@ permissions:
     - Exec(git log*)
     - Exec(git show*)
     - Exec(git status*)
-    - Exec(curl http://localhost:11434/*)
+    - Exec(curl http://localhost:*)
 ---
 
 You are an Ollama integration auditor. Your job is to review Ollama
@@ -58,7 +58,7 @@ integration best practices.
   model.
 
 ### 5. Test Isolation
-- All outbound HTTP connections to `localhost:11434` must be stubbed
+- All outbound HTTP connections to `localhost:<ollama-port>` must be stubbed
   in tests using `pytest-mock` or `unittest.mock`.
 - The test suite must pass 100% without an active Ollama daemon.
 - Flag any test that makes a real `ollama.Client()` call without

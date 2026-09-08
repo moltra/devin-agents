@@ -1,7 +1,6 @@
 ---
 name: quick-review
-description: Quick pre-commit code review using the SWE model
-model: swe
+description: Quick pre-commit code review subagent
 subagent: true
 allowed-tools:
   - read

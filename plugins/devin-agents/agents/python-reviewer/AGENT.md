@@ -1,7 +1,6 @@
 ---
 name: python-reviewer
 description: Rigorous Python code reviewer — bugs, style, patterns, type safety, and error handling
-model: swe-1-7-medium
 allowed-tools:
   - read
   - grep

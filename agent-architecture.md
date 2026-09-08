@@ -86,6 +86,8 @@ graph TD
     class SR,SC meta
 ```
 
+The plugin provides 22 subagent profiles and 29 skills, organized into coordinators, implementation specialists, quality reviewers, workflow agents, and process skills.
+
 ## Delegation Flow
 
 ```mermaid
@@ -165,30 +167,37 @@ flowchart TD
 
 ## Agent Inventory
 
+> **Model inheritance:** Agent profiles do **not** pin a `model:` field by
+> default. All agents inherit the **default subagent model**, which admins can
+> configure centrally via org/enterprise settings. To override the default for
+> a specific agent, add a `model:` line to that agent's `AGENT.md` frontmatter.
+> Valid values include: `swe`, `opus`, `sonnet`, `haiku`, `codex`, `gemini`,
+> `gpt`.
+
 | Category | Agent | Model | Focus |
 |----------|-------|-------|-------|
-| **Coordinators** | `global_coordinator` | swe-1-7-high | Detects language/stack, delegates |
-| | `coordinator` | swe-1-7-high | Generic orchestrator |
-| | `python_coordinator` | swe-1-7-high | Python-specific orchestrator |
-| | `planner` | swe-1-7-high | Spec/PLAN.md production (no implementation) |
-| **Implementation** | `python-developer` | swe-1-7-high | FastAPI/Flask/Django backend |
-| | `api-specialist` | swe-1-7-medium | REST endpoints, validation, OpenAPI |
-| | `streamlit-expert` | swe-1-7-medium | Streamlit UI, caching, reruns |
-| | `redis-engineer` | swe-1-7-medium | Redis caching, serialization, fallback |
-| | `ollama-specialist` | swe-1-7-medium | Ollama LLM, streaming, structured output |
-| | `devops-docker` | swe-1-7-medium | Docker Compose, deployment, health |
-| **Quality** | `python-reviewer` | swe-1-7-medium | Python code review (bugs, style, types) |
-| | `swe-check` | swe-1-7-medium | Non-Python bug detection |
-| | `security-auditor` | swe-1-7-medium | Vulnerabilities, secret detection |
-| | `testing-guardian` | swe-1-7-medium | Test coverage, quality, mocking |
-| | `qa-ci-agent` | swe-1-7-medium | CI/CD gates, lint, typecheck |
-| | `architecture-reviewer` | swe-1-7-medium | Module boundaries, dependency graph |
-| | `best-practices-reviewer` | swe-1-7-medium | Cross-language code quality |
-| | `feature-verifier` | swe-1-7-medium | Verify features match spec |
-| **Workflow** | `git-workflow` | swe-1-7-medium | Branch management, commits, merges |
-| | `documentation-agent` | swe-1-7-medium | README, API docs, migration guides |
-| | `playwright-testing` | swe-1-7-medium | E2E test creation and maintenance |
-| **Meta** | `subagent-curator` | swe-1-7-high | Reviews/edits/creates agent profiles |
+| **Coordinators** | `global_coordinator` | default (inherited) | Detects language/stack, delegates |
+| | `coordinator` | default (inherited) | Generic orchestrator |
+| | `python_coordinator` | default (inherited) | Python-specific orchestrator |
+| | `planner` | default (inherited) | Spec/PLAN.md production (no implementation) |
+| **Implementation** | `python-developer` | default (inherited) | FastAPI/Flask/Django backend |
+| | `api-specialist` | default (inherited) | REST endpoints, validation, OpenAPI |
+| | `streamlit-expert` | default (inherited) | Streamlit UI, caching, reruns |
+| | `redis-engineer` | default (inherited) | Redis caching, serialization, fallback |
+| | `ollama-specialist` | default (inherited) | Ollama LLM, streaming, structured output |
+| | `devops-docker` | default (inherited) | Docker Compose, deployment, health |
+| **Quality** | `python-reviewer` | default (inherited) | Python code review (bugs, style, types) |
+| | `swe-check` | default (inherited) | Non-Python bug detection |
+| | `security-auditor` | default (inherited) | Vulnerabilities, secret detection |
+| | `testing-guardian` | default (inherited) | Test coverage, quality, mocking |
+| | `qa-ci-agent` | default (inherited) | CI/CD gates, lint, typecheck |
+| | `architecture-reviewer` | default (inherited) | Module boundaries, dependency graph |
+| | `best-practices-reviewer` | default (inherited) | Cross-language code quality |
+| | `feature-verifier` | default (inherited) | Verify features match spec |
+| **Workflow** | `git-workflow` | default (inherited) | Branch management, commits, merges |
+| | `documentation-agent` | default (inherited) | README, API docs, migration guides |
+| | `playwright-testing` | default (inherited) | E2E test creation and maintenance |
+| **Meta** | `subagent-curator` | default (inherited) | Reviews/edits/creates agent profiles |
 
 ## Skill Inventory
 
@@ -217,6 +226,12 @@ flowchart TD
 | | `quick-review` | `/devin-agents:quick-review` | Quick pre-commit review |
 | **Meta** | `subagent-recommender` | `/devin-agents:subagent-recommender` | Detect gaps, propose agents |
 | | `subagent-curator` | `/devin-agents:subagent-curator` | Review/edit/create/audit profiles |
+| **Process** | `grilling` | `/devin-agents:grilling` | Pre-implementation interview |
+| | `tdd` | `/devin-agents:tdd` | Red-green-refactor discipline |
+| | `diagnosing-bugs` | `/devin-agents:diagnosing-bugs` | 6-phase debugging |
+| | `code-review` | `/devin-agents:code-review` | Two-axis review (standards + spec) |
+| | `codebase-design` | `/devin-agents:codebase-design` | Deep module design vocabulary |
+| | `handoff` | `/devin-agents:handoff` | Session continuity |
 
 ## Workflow Patterns
 

@@ -1,7 +1,6 @@
 ---
 name: redis-engineer
 description: Redis data engineer — caching layers, serialization, connection resilience, and fallback strategies
-model: swe-1-7-medium
 allowed-tools:
   - read
   - grep

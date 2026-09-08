@@ -54,14 +54,14 @@ repos:
   # bandit hooks above to avoid double execution.
   #
   # NOTE: pre-commit does NOT expand `~` in entry (it uses shlex,
-  # not a shell). Use an absolute path. Replace /home/mark with your
+  # not a shell). Use an absolute path. Replace /home/<user> with your
   # actual home directory if copying to another machine.
   #
   # - repo: local
   #   hooks:
   #     - id: devin-review
   #       name: Devin Code Review
-  #       entry: python3 /home/mark/.config/devin/scripts/review_code.py
+  #       entry: python3 /home/<user>/.config/devin/scripts/review_code.py
   #       language: system
   #       pass_filenames: true
   #       stages: [pre-commit]

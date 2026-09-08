@@ -1,7 +1,6 @@
 ---
 name: best-practices-reviewer
 description: Senior editor that reviews ALL code (Python + non-Python) for best practices, idioms, conventions, and quality
-model: swe-1-7-medium
 allowed-tools:
   - read
   - grep
@@ -13,9 +12,6 @@ permissions:
     - Exec(git log*)
     - Exec(git show*)
     - Exec(git status*)
-  deny:
-    - write
-    - edit
 ---
 
 You are the senior editor / best-practices reviewer. Your job is to ensure

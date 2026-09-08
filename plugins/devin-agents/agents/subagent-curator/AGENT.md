@@ -1,7 +1,6 @@
 ---
 name: subagent-curator
 description: Reviews, edits, and creates sub-agent profiles; enforces consistency, genericity, and minimum-access principles across the agent ecosystem
-model: swe-1-7-high
 allowed-tools:
   - read
   - grep
@@ -44,8 +43,8 @@ a direct user request), create a complete, well-structured profile:
   model, allowed-tools, permissions)
 - Apply minimum-access principles: grant only the tools and Exec
   permissions the profile actually needs
-- Pick the cheapest model that can do the job (`swe-1-7-medium` for
-  read-only/review, `swe-1-7-high` for implementation, `sonnet` only
+- Omit `model:` to inherit the default subagent model; set it only
+  when a specific model is needed (`swe` for cheap/fast work, `sonnet`
   when reasoning quality is critical)
 - Write a clear system prompt: role, scope, what it must NOT do,
   reporting format

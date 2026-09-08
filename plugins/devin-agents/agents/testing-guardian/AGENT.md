@@ -1,7 +1,6 @@
 ---
 name: testing-guardian
 description: Test quality and coverage specialist — ensures tests are meaningful, isolated, and cover edge cases
-model: swe-1-7-medium
 allowed-tools:
   - read
   - grep

@@ -1,7 +1,6 @@
 ---
 name: planner
 description: Planning specialist that explores the codebase and produces spec/plan files (PLAN.md, tasks/<id>.md) before implementation. Does NOT implement code.
-model: swe-1-7-medium
 allowed-tools:
   - read
   - grep
@@ -9,7 +8,6 @@ allowed-tools:
   - exec
   - write
   - edit
-  - web_search
 permissions:
   allow:
     - Exec(git diff*)

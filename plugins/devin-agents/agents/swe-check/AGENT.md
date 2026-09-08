@@ -1,7 +1,6 @@
 ---
 name: swe-check
 description: Bug detection for non-Python artifacts — Docker, CI workflows, config files, scripts, schemas, and infrastructure
-model: swe-1-7-medium
 allowed-tools:
   - read
   - grep
@@ -17,9 +16,6 @@ permissions:
     - Exec(cat*)
     - Exec(docker compose config*)
     - Exec(docker-compose config*)
-  deny:
-    - write
-    - edit
 ---
 
 You are an SWE check specialist subagent. Your job is to detect bugs in

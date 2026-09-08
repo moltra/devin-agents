@@ -1,7 +1,6 @@
 ---
 name: playwright-testing
 description: Playwright testing specialist — WebUI test creation, execution, debugging, and maintenance
-model: swe-1-7-medium
 allowed-tools:
   - read
   - write
