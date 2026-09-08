@@ -1,0 +1,128 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate plugin structure
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate plugin.json
+        run: |
+          python3 -m json.tool plugins/devin-agents/.devin-plugin/plugin.json > /dev/null
+          echo "plugin.json is valid JSON"
+
+      - name: Check agent count
+        run: |
+          count=$(find plugins/devin-agents/agents -name "AGENT.md" | wc -l)
+          echo "Agent count: $count"
+          if [ "$count" -ne 22 ]; then
+            echo "FAIL: expected 22 agents, found $count"
+            exit 1
+          fi
+
+      - name: Check skill count
+        run: |
+          count=$(find plugins/devin-agents/skills -name "SKILL.md" | wc -l)
+          echo "Skill count: $count"
+          if [ "$count" -ne 29 ]; then
+            echo "FAIL: expected 29 skills, found $count"
+            exit 1
+          fi
+
+      - name: Check rule count
+        run: |
+          count=$(find plugins/devin-agents/rules -name "*.md" | wc -l)
+          echo "Rule count: $count"
+          if [ "$count" -ne 2 ]; then
+            echo "FAIL: expected 2 rules, found $count"
+            exit 1
+          fi
+
+      - name: "Check for model: in agent frontmatter"
+        run: |
+          hits=$(grep -rl "^model:" plugins/devin-agents/agents/*/AGENT.md 2>/dev/null | wc -l)
+          echo "model: in agents: $hits"
+          if [ "$hits" -ne 0 ]; then
+            echo "FAIL: found model: in agent frontmatter"
+            grep -rn "^model:" plugins/devin-agents/agents/*/AGENT.md
+            exit 1
+          fi
+
+      - name: "Check for model: in skill frontmatter"
+        run: |
+          hits=$(grep -rl "^model:" plugins/devin-agents/skills/*/SKILL.md 2>/dev/null | wc -l)
+          echo "model: in skills: $hits"
+          if [ "$hits" -ne 0 ]; then
+            echo "FAIL: found model: in skill frontmatter"
+            grep -rn "^model:" plugins/devin-agents/skills/*/SKILL.md
+            exit 1
+          fi
+
+      - name: Check for stale model references
+        run: |
+          hits=$(grep -rn "swe-1-7" plugins/devin-agents/ templates/ 2>/dev/null | wc -l)
+          echo "swe-1-7 refs: $hits"
+          if [ "$hits" -ne 0 ]; then
+            echo "FAIL: found stale swe-1-7 references"
+            grep -rn "swe-1-7" plugins/devin-agents/ templates/
+            exit 1
+          fi
+
+      - name: Check for project-specific content
+        run: |
+          hits=$(grep -rn "/home/mark\|/mnt/samsung\|/mnt/data\|MoneyPrinter\|herdr\|jellyfin\|trailarr" plugins/devin-agents/ 2>/dev/null | wc -l)
+          echo "Project-specific refs: $hits"
+          if [ "$hits" -ne 0 ]; then
+            echo "FAIL: found project-specific content"
+            grep -rn "/home/mark\|/mnt/samsung\|/mnt/data\|MoneyPrinter\|herdr\|jellyfin\|trailarr" plugins/devin-agents/
+            exit 1
+          fi
+
+      - name: Check for web_search in agent allowed-tools
+        run: |
+          hits=$(grep -rn "web_search" plugins/devin-agents/agents/*/AGENT.md 2>/dev/null | wc -l)
+          echo "web_search in agents: $hits"
+          if [ "$hits" -ne 0 ]; then
+            echo "FAIL: web_search is not a valid subagent tool"
+            grep -rn "web_search" plugins/devin-agents/agents/*/AGENT.md
+            exit 1
+          fi
+
+      - name: Check for ask_user_question in agent allowed-tools
+        run: |
+          hits=$(grep -rn "ask_user_question" plugins/devin-agents/agents/*/AGENT.md 2>/dev/null | wc -l)
+          echo "ask_user_question in agents: $hits"
+          if [ "$hits" -ne 0 ]; then
+            echo "FAIL: ask_user_question is always withheld from subagents"
+            grep -rn "ask_user_question" plugins/devin-agents/agents/*/AGENT.md
+            exit 1
+          fi
+
+      - name: Validate YAML frontmatter in all profiles
+        run: python3 scripts/validate_plugin.py
+
+  security:
+    name: Secret scan
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Scan for secrets
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
