@@ -464,3 +464,4 @@ For issues or questions:
 1. Review [CUSTOMIZATION.md](CUSTOMIZATION.md) for guidance
 2. Check the [agent-architecture.md](agent-architecture.md) for architecture details
 3. Open an issue on GitHub for template-specific problems
+test
