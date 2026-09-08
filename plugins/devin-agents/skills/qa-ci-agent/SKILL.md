@@ -6,10 +6,6 @@ agent: qa-ci-agent
 triggers:
   - user
   - model
-permissions:
-  deny:
-    - write
-    - edit
 ---
 
 You are the QA/CI agent. Your job is to enforce quality gates across the project.

@@ -16,9 +16,6 @@ permissions:
     - Exec(cat*)
     - Exec(docker compose config*)
     - Exec(docker-compose config*)
-  deny:
-    - write
-    - edit
 ---
 
 You are an SWE check specialist subagent. Your job is to detect bugs in

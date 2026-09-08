@@ -30,9 +30,6 @@ permissions:
     - Exec(npm test*)
     - Exec(npm run*)
     - Exec(npx tsc*)
-  deny:
-    - write
-    - edit
 ---
 
 You are a QA/CI specialist subagent. Your job is to enforce quality

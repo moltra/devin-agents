@@ -197,7 +197,6 @@ install_skills_from() {
 }
 
 install_skills_from "$REPO_DIR/plugins/devin-agents/skills"
-install_skills_from "$REPO_DIR/.devin/skills"
 
 printf '\nInstallation complete.\n'
 printf 'Backup: %s\n' "$BACKUP_DIR"

@@ -6,10 +6,6 @@ A comprehensive collection of **generic agent templates and patterns** for Devin
 
 This repository contains **generic agent templates, patterns, and documentation** that can be customized for any project. The templates are designed to be copied to your local Devin configuration and then adapted to your specific needs.
 
-### Current Setup
-
-**Moltra is currently using the setup in the `Current_setup_in_use_by Moltra/` folder.** This folder contains the active configuration and customizations being used in production.
-
 ## Architecture
 
 The system uses a hierarchical delegation pattern where a coordinator agent orchestrates specialized sub-agents for specific tasks. The ecosystem is self-improving via a sensor/actuator loop.
@@ -86,8 +82,8 @@ See [agent-architecture.md](agent-architecture.md) for detailed diagrams (delega
 │   └── redis-patterns.md
 ├── plugins/                   # Devin plugin (installable unit)
 │   └── devin-agents/
-│       ├── agents/            # 20 subagent profiles
-│       ├── skills/            # 23 skills
+│       ├── agents/            # 22 subagent profiles
+│       ├── skills/            # 29 skills
 │       ├── rules/             # 2 triggered rules
 │       └── AGENTS.md          # always-on rule
 ├── scripts/                   # Utility scripts

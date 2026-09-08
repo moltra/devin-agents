@@ -6,10 +6,6 @@ agent: architecture-reviewer
 triggers:
   - user
   - model
-permissions:
-  deny:
-    - write
-    - edit
 ---
 
 You are the architecture reviewer. Your job is to ensure the repository follows clean architecture principles.

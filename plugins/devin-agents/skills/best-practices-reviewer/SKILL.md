@@ -6,10 +6,6 @@ agent: best-practices-reviewer
 triggers:
   - user
   - model
-permissions:
-  deny:
-    - write
-    - edit
 ---
 
 You are the senior editor / best-practices reviewer. Your job is to ensure that ALL code in the repository is written according to best practices, idiomatic conventions, and project standards — across every language and artifact type.

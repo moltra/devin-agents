@@ -8,7 +8,6 @@ allowed-tools:
   - exec
   - write
   - edit
-  - web_search
 permissions:
   allow:
     - Exec(git diff*)

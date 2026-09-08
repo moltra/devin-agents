@@ -58,7 +58,7 @@ integration best practices.
   model.
 
 ### 5. Test Isolation
-- All outbound HTTP connections to `localhost:11434` must be stubbed
+- All outbound HTTP connections to `localhost:<ollama-port>` must be stubbed
   in tests using `pytest-mock` or `unittest.mock`.
 - The test suite must pass 100% without an active Ollama daemon.
 - Flag any test that makes a real `ollama.Client()` call without

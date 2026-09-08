@@ -6,10 +6,6 @@ agent: feature-verifier
 triggers:
   - user
   - model
-permissions:
-  deny:
-    - write
-    - edit
 ---
 
 You are the feature verifier. Your job is to confirm that implemented features actually match what was requested and work as requested — closing the gap between intent and implementation.

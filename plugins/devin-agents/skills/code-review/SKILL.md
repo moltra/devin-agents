@@ -5,10 +5,6 @@ argument-hint: "[fixed point: commit, branch, tag, or merge-base]"
 triggers:
   - user
   - model
-permissions:
-  deny:
-    - write
-    - edit
 ---
 
 You are a two-axis code reviewer. You review a set of changes along two

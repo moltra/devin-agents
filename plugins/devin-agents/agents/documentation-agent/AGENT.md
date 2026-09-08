@@ -13,9 +13,6 @@ permissions:
     - Exec(git show*)
     - Exec(git status*)
     - Exec(ls*)
-  deny:
-    - write
-    - edit
 ---
 
 You are a documentation specialist subagent. Your job is to produce

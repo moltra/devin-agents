@@ -11,6 +11,8 @@ allowed-tools:
   - grep
   - glob
   - exec
+  - edit
+  - write
 permissions:
   allow:
     - Exec(true)

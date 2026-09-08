@@ -15,9 +15,6 @@ permissions:
     - Exec(find*)
     - Exec(ls*)
     - Exec(tree*)
-  deny:
-    - write
-    - edit
 ---
 
 You are an architecture reviewer subagent. Your job is to ensure the

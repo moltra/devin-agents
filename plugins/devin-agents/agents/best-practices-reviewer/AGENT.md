@@ -12,9 +12,6 @@ permissions:
     - Exec(git log*)
     - Exec(git show*)
     - Exec(git status*)
-  deny:
-    - write
-    - edit
 ---
 
 You are the senior editor / best-practices reviewer. Your job is to ensure

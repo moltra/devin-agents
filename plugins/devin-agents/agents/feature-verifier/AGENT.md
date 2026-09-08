@@ -12,9 +12,6 @@ permissions:
     - Exec(git log*)
     - Exec(git show*)
     - Exec(git status*)
-  deny:
-    - write
-    - edit
 ---
 
 You are the feature verifier. Your job is to confirm that implemented

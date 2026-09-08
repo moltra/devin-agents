@@ -6,10 +6,6 @@ agent: documentation-agent
 triggers:
   - user
   - model
-permissions:
-  deny:
-    - write
-    - edit
 ---
 > **Note:** Docs must be produced during the feature wave, not at the end; see `CONVENTIONS.md`
 
