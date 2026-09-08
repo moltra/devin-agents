@@ -1,0 +1,17 @@
+# These owners will be the default owners for everything in the repo
+* @moltra
+
+# Agent profiles
+/plugins/devin-agents/agents/ @moltra
+
+# Skills
+/plugins/devin-agents/skills/ @moltra
+
+# Plugin manifest
+/plugins/devin-agents/.devin-plugin/ @moltra
+
+# Rules
+/plugins/devin-agents/rules/ @moltra
+
+# Scripts
+/scripts/ @moltra
