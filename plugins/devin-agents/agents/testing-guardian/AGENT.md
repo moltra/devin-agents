@@ -1,5 +1,6 @@
 ---
 name: testing-guardian
+model: swe-2-high
 description: Test quality and coverage specialist — ensures tests are meaningful, isolated, and cover edge cases
 allowed-tools:
   - read

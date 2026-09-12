@@ -1,5 +1,6 @@
 ---
 name: planner
+model: swe-2-high
 description: Planning specialist that explores the codebase and produces spec/plan files (PLAN.md, tasks/<id>.md) before implementation. Does NOT implement code.
 allowed-tools:
   - read

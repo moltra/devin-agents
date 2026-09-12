@@ -1,5 +1,6 @@
 ---
 name: feature-verifier
+model: swe-2-high
 description: Verifies that implemented features actually match the original request/spec and work as requested
 allowed-tools:
   - read

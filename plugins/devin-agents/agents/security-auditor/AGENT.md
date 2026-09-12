@@ -1,5 +1,6 @@
 ---
 name: security-auditor
+model: swe-2-high
 description: Security vulnerability scanner — secret detection, input validation, injection risks, and dependency safety
 allowed-tools:
   - read

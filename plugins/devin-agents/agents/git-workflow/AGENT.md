@@ -1,5 +1,6 @@
 ---
 name: git-workflow
+model: swe-2-high
 description: Git workflow specialist — branch management, commits, merges, and validation
 allowed-tools:
   - read

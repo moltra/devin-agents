@@ -1,5 +1,6 @@
 ---
 name: redis-engineer
+model: swe-2-high
 description: Redis data engineer — caching layers, serialization, connection resilience, and fallback strategies
 allowed-tools:
   - read

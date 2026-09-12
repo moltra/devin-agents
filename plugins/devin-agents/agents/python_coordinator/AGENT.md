@@ -1,5 +1,6 @@
 ---
 name: python_coordinator
+model: swe-2-high
 description: Language-specific coordinator for Python projects. Orchestrates Python specialists and delegates implementation, review, and verification.
 allowed-tools:
   - read

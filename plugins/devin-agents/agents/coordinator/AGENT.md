@@ -1,5 +1,6 @@
 ---
 name: coordinator
+model: swe-2-high
 description: Lead orchestrator that breaks down complex tasks and delegates to specialist subagents
 allowed-tools:
   - read

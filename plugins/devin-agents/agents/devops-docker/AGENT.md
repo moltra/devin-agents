@@ -1,5 +1,6 @@
 ---
 name: devops-docker
+model: swe-2-high
 description: DevOps and Docker specialist — container orchestration, Docker Compose, deployment configs, and container health
 allowed-tools:
   - read

@@ -1,5 +1,6 @@
 ---
 name: architecture-reviewer
+model: swe-2-high
 description: Repository architecture reviewer — module boundaries, dependency graph, structural consistency
 allowed-tools:
   - read

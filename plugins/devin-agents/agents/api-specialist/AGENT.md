@@ -1,5 +1,6 @@
 ---
 name: api-specialist
+model: swe-2-high
 description: API design and implementation specialist — REST endpoints, validation, async patterns, and OpenAPI documentation
 allowed-tools:
   - read

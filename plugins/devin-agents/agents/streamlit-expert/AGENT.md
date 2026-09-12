@@ -1,5 +1,6 @@
 ---
 name: streamlit-expert
+model: swe-2-high
 description: Streamlit UI specialist — component architecture, session state, caching, and rerun performance
 allowed-tools:
   - read

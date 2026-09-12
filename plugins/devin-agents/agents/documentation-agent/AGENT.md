@@ -1,5 +1,6 @@
 ---
 name: documentation-agent
+model: swe-2-high
 description: Documentation specialist — README, API docs, architecture docs, migration guides, and examples
 allowed-tools:
   - read
