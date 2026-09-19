@@ -1,5 +1,6 @@
 ---
 name: python-developer
+model: swe-2-high
 description: Python development specialist — FastAPI, Flask, Django, backend logic, services, tests, and integrations
 allowed-tools:
   - read

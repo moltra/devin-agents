@@ -48,12 +48,13 @@ jobs:
             exit 1
           fi
 
-      - name: "Check for model: in agent frontmatter"
+      - name: "Check consistent model: pin in agent frontmatter"
         run: |
-          hits=$(grep -rl "^model:" plugins/devin-agents/agents/*/AGENT.md 2>/dev/null | wc -l)
-          echo "model: in agents: $hits"
-          if [ "$hits" -ne 0 ]; then
-            echo "FAIL: found model: in agent frontmatter"
+          distinct=$(grep -h "^model:" plugins/devin-agents/agents/*/AGENT.md 2>/dev/null | sort -u | wc -l)
+          pinned=$(grep -l "^model:" plugins/devin-agents/agents/*/AGENT.md 2>/dev/null | wc -l)
+          echo "distinct model values: $distinct, pinned agents: $pinned"
+          if [ "$pinned" -ne 0 ] && { [ "$pinned" -ne 22 ] || [ "$distinct" -ne 1 ]; }; then
+            echo "FAIL: model: must be either unset on all agents or pinned to one value on all 22"
             grep -rn "^model:" plugins/devin-agents/agents/*/AGENT.md
             exit 1
           fi

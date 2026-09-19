@@ -1,5 +1,6 @@
 ---
 name: subagent-curator
+model: swe-2-high
 description: Reviews, edits, and creates sub-agent profiles; enforces consistency, genericity, and minimum-access principles across the agent ecosystem
 allowed-tools:
   - read

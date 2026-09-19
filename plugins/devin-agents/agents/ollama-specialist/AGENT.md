@@ -1,5 +1,6 @@
 ---
 name: ollama-specialist
+model: swe-2-high
 description: Ollama LLM integration specialist — local inference, streaming, structured outputs, and async patterns
 allowed-tools:
   - read

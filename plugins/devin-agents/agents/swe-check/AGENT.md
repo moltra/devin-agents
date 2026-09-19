@@ -1,5 +1,6 @@
 ---
 name: swe-check
+model: swe-2-high
 description: Bug detection for non-Python artifacts — Docker, CI workflows, config files, scripts, schemas, and infrastructure
 allowed-tools:
   - read

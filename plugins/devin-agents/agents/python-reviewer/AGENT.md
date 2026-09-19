@@ -1,5 +1,6 @@
 ---
 name: python-reviewer
+model: swe-2-high
 description: Rigorous Python code reviewer — bugs, style, patterns, type safety, and error handling
 allowed-tools:
   - read

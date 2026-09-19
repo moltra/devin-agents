@@ -1,5 +1,6 @@
 ---
 name: playwright-testing
+model: swe-2-high
 description: Playwright testing specialist — WebUI test creation, execution, debugging, and maintenance
 allowed-tools:
   - read

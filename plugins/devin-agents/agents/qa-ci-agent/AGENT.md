@@ -1,5 +1,6 @@
 ---
 name: qa-ci-agent
+model: swe-2-high
 description: CI/CD quality gate enforcement — linting, type checking, test orchestration, and workflow validation
 allowed-tools:
   - read

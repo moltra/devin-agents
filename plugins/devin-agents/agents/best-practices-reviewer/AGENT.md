@@ -1,5 +1,6 @@
 ---
 name: best-practices-reviewer
+model: swe-2-high
 description: Senior editor that reviews ALL code (Python + non-Python) for best practices, idioms, conventions, and quality
 allowed-tools:
   - read
