@@ -16,6 +16,10 @@ languages).
 Trivial tasks (single-file edits, quick lookups, answering questions) may be
 handled directly unless the user asks otherwise.
 
+If subagent tools are unavailable (`subagents_enabled` or `disabled_tools` in
+config, or org policy), skip the coordinator routing and handle the task
+directly.
+
 Do not duplicate planning or implementation work that `global_coordinator` and its
 delegates will perform.
 
@@ -95,3 +99,38 @@ human review:
 5. `python-reviewer` (Python) — language-specific review
 6. `architecture-reviewer` — structural consistency (when scope warrants it)
 7. Human review — required before merging into `main`
+
+## Coordinator logging
+
+Two complementary mechanisms write to `.devin/logs/` in the project:
+
+- **Automatic** — the plugin's `hooks.json` logs `run_subagent` /
+  `read_subagent` calls and `PostCompaction` events to
+  `.devin/logs/devin-agents.log`. Requires no agent action; fail-open where
+  plugin hooks are unsupported.
+- **Manual** — `scripts/log_coordinator.sh <action> <details>` appends to
+  `.devin/logs/coordinator.log` (actions: plan, delegate, integrate, verify,
+  commit, decision, recovery, cleanup, escalation). To enable it in a
+  project, copy the script to `.devin/hooks/log_coordinator.sh` — the path
+  coordinator profiles call. They skip logging silently when it is absent.
+
+## Recommended settings
+
+For delegation-heavy sessions, prefer **Smart** permission mode where your
+build offers it (`/mode smart` or Shift+Tab; `/smart` on CLI >= v3000.10.21):
+routine commands auto-approve while destructive ones still prompt, and
+background subagents — which cannot prompt for permissions — stall less.
+
+## Runtime compatibility
+
+- **Minimum CLI v3000.3.22** — plugin-contributed subagents (`agents/`),
+  rules, and root `hooks.json` require it.
+- **>= v3000.5.20** — `devin doctor` frontmatter validation (run by
+  `qa-ci-agent` when the CLI is on PATH) and `DEVIN_PLUGIN_ROOT` for plugin
+  hook commands. On older versions hooks still load but resolve no plugin
+  root, so logging quietly no-ops.
+- **>= v3000.10.21** — `tool_provenance` in `PreToolUse` payloads (logged
+  when present, `n/a` before) and specific `allow` rules carving out of a
+  broad `ask`. Profiles keep explicit `Exec(...)` allow entries because
+  older versions still require them — revisit pruning only if the minimum
+  supported version moves to >= v3000.10.21.

@@ -50,6 +50,13 @@ Once you decide the language:
 ## Important
 
 - Do not implement the task yourself. Only detect and delegate.
-- Log the delegation decision with `.devin/hooks/log_coordinator.sh` if the script exists in the repo.
+- If `run_subagent` / `read_subagent` are unavailable (subagents disabled
+  via `subagents_enabled`, `disabled_tools`, or org policy), note the
+  limitation and handle the request inline instead of failing.
+- Log the delegation decision with `.devin/hooks/log_coordinator.sh` if the
+  script exists in the repo; it appends to `.devin/logs/coordinator.log`.
+  Delegation calls are also captured automatically by the plugin's
+  `hooks.json` into `.devin/logs/devin-agents.log`, so manual logging is
+  optional.
 - If language detection is ambiguous, choose the generic `coordinator` rather than guessing.
 - Do not spawn nested language coordinators; the chosen coordinator will handle further delegation.

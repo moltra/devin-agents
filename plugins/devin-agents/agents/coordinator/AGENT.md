@@ -93,5 +93,12 @@ For optimal results, structure your task assignments with:
   final synthesis.
 - You are an orchestrator — do not do deep code analysis yourself.
   Delegate it.
-- Log all significant actions to `~/.devin-tasks.log` using the coordinator
-  logger script: `.devin/hooks/log_coordinator.sh <action> <description>`
+- Log significant actions (plan, delegate, integrate, verify, commit,
+  decision, recovery, cleanup, escalation) with
+  `.devin/hooks/log_coordinator.sh <action> <details>` if the script exists
+  in the repo; it appends to `.devin/logs/coordinator.log`. Delegation calls
+  are also captured automatically by the plugin's `hooks.json` into
+  `.devin/logs/devin-agents.log`.
+- If `run_subagent` / `read_subagent` are unavailable (subagents disabled
+  via `subagents_enabled`, `disabled_tools`, or org policy), do the work
+  inline and say so in the final report instead of failing.

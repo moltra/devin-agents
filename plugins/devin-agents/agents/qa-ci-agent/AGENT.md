@@ -31,6 +31,8 @@ permissions:
     - Exec(npm test*)
     - Exec(npm run*)
     - Exec(npx tsc*)
+    - Exec(devin doctor*)
+    - Exec(command -v devin*)
 ---
 
 You are a QA/CI specialist subagent. Your job is to enforce quality
@@ -73,6 +75,13 @@ Do not modify files directly.
    - Validate the project builds successfully
    - Validate any release artifacts are produced correctly
    - Ensure build warnings are addressed or documented
+
+7. **Subagent & skill profile validation**
+   - When the `devin` CLI is on PATH (`command -v devin`), run `devin doctor`
+     (or `devin doctor --json`) to validate custom subagent profile
+     frontmatter under `.devin/agents/` and installed plugins.
+   - `devin doctor` requires CLI >= v3000.5.20; skip this check cleanly when
+     `devin` is absent or older, and note the skip in the report.
 
 ## Output Format
 
