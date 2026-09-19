@@ -1,0 +1,25 @@
+{
+  "PreToolUse": [
+    {
+      "matcher": "run_subagent|read_subagent",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "ROOT=\"${DEVIN_PLUGIN_ROOT:-${CLAUDE_PLUGIN_ROOT:-}}\"; [ -f \"$ROOT/hooks/log_hook_event.sh\" ] && exec bash \"$ROOT/hooks/log_hook_event.sh\" pre_tool || true",
+          "timeout": 5
+        }
+      ]
+    }
+  ],
+  "PostCompaction": [
+    {
+      "hooks": [
+        {
+          "type": "command",
+          "command": "ROOT=\"${DEVIN_PLUGIN_ROOT:-${CLAUDE_PLUGIN_ROOT:-}}\"; [ -f \"$ROOT/hooks/log_hook_event.sh\" ] && exec bash \"$ROOT/hooks/log_hook_event.sh\" compaction || true",
+          "timeout": 5
+        }
+      ]
+    }
+  ]
+}

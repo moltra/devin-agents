@@ -109,6 +109,30 @@ jobs:
             exit 1
           fi
 
+      - name: Validate hooks.json
+        run: |
+          if [ -f plugins/devin-agents/hooks.json ]; then
+            python3 -m json.tool plugins/devin-agents/hooks.json > /dev/null
+            echo "hooks.json is valid JSON"
+          else
+            echo "SKIP: no hooks.json"
+          fi
+
+      - name: Lint shipped shell scripts
+        run: |
+          for f in plugins/devin-agents/hooks/*.sh plugins/devin-agents/scripts/*.sh; do
+            [ -e "$f" ] || continue
+            bash -n "$f" && echo "OK: $f"
+          done
+
+      - name: "devin doctor (when CLI is installed)"
+        run: |
+          if command -v devin >/dev/null 2>&1; then
+            devin doctor
+          else
+            echo "SKIP: devin CLI not installed (doctor requires >= v3000.5.20)"
+          fi
+
       - name: Validate YAML frontmatter in all profiles
         run: python3 scripts/validate_plugin.py
 
